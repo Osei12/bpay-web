@@ -1,0 +1,630 @@
+# BPAY - Mobile Financial Management Application
+## Comprehensive Project Documentation
+
+================================================================================
+PROJECT OVERVIEW
+================================================================================
+
+Project Name: BPay
+Version: 1.0.0
+Platform: React Native (Expo)
+Package Manager: pnpm
+Bundle Identifier: com.oseikusi.bpay
+
+BPay is a comprehensive mobile financial management application designed to
+streamline personal financial activities, with specialized features for
+students including SEVIS fee payments, loan applications, and document
+management. The application provides a secure and intuitive interface for
+managing various financial transactions and services.
+
+================================================================================
+TECHNOLOGY STACK
+================================================================================
+
+### Core Framework & Runtime
+- React Native 0.79.5
+- React 19.0.0
+- Expo SDK ~53.0.22
+- TypeScript ~5.8.3
+- Expo Router ~5.1.5 (File-based routing)
+
+### UI & Styling
+- NativeWind 2.0.11 (Tailwind CSS for React Native)
+- Tailwind CSS 3.3.2
+- Class Variance Authority 0.7.1
+- Tailwind Merge 3.2.0
+- Linear Gradient (expo-linear-gradient)
+- React Native Gesture Handler 2.24.0
+- React Native Reanimated 3.17.5
+
+### State Management & Data Fetching
+- React Query (@tanstack/react-query) 5.87.1
+- React Context API for Authentication
+- React Hook Form 7.62.0 with Zod validation
+
+### Backend & Database
+- Supabase (@supabase/supabase-js) 2.57.0
+- AsyncStorage for local persistence
+- Expo Secure Store for sensitive data
+
+### Payment Integration
+- Paystack WebView (@hurshore/react-native-paystack-webview) 5.0.3
+- React Native Paystack WebView 5.0.1
+
+### Authentication & Security
+- Expo Local Authentication (biometric)
+- Expo Secure Store
+- Custom PIN/password security
+
+### Media & Documents
+- Expo Camera 16.1.11
+- Expo Image 2.4.0
+- Expo Document Picker 14.0.7
+- React Native SVG 15.11.2
+
+### UI Components & Icons
+- Lucide React Native 0.525.0
+- React Native Elements (@rneui/themed)
+- Bottom Sheet Modal (@gorhom/bottom-sheet)
+- Lottie React Native 7.2.2
+
+### Development Tools
+- Jest 29.2.1 with Expo preset
+- Prettier with Tailwind plugin
+- React Test Renderer
+
+================================================================================
+PROJECT STRUCTURE
+================================================================================
+
+```
+bpay/
+├── app/                          # Expo Router file-based routing
+│   ├── (auth)/                   # Authentication flow screens
+│   │   ├── _layout.tsx           # Auth layout wrapper
+│   │   ├── sign-in.tsx           # Login screen
+│   │   ├── sign-up.tsx           # Registration screen
+│   │   ├── onboarding.tsx        # User onboarding
+│   │   ├── kyc.tsx               # KYC verification
+│   │   ├── app-lock.tsx          # App security lock screen
+│   │   └── signup/               # Multi-step signup process
+│   │       ├── personal-info.tsx
+│   │       ├── verification-type.tsx
+│   │       ├── otp-verification.tsx
+│   │       ├── create-password.tsx
+│   │       ├── document-capture.tsx
+│   │       ├── front-id.tsx
+│   │       ├── back-id.tsx
+│   │       ├── selfie-capture.tsx
+│   │       └── completion.tsx
+│   │
+│   ├── (tabs)/                   # Bottom tab navigation
+│   │   ├── _layout.tsx           # Tab layout configuration
+│   │   ├── index.tsx             # Home/Dashboard screen
+│   │   ├── payment.tsx           # Payment services
+│   │   ├── transaction.tsx       # Transaction history
+│   │   ├── search.tsx            # Search functionality
+│   │   ├── notifications.tsx     # Notifications center
+│   │   └── more.tsx              # Additional options
+│   │
+│   ├── (root)/                   # Protected root screens
+│   │   ├── _layout.tsx           # Root layout wrapper
+│   │   ├── settings.tsx          # App settings
+│   │   ├── personal-information.tsx
+│   │   ├── edit-personal-information.tsx
+│   │   ├── password-security.tsx
+│   │   ├── setup-pin.tsx
+│   │   ├── payment-methods.tsx
+│   │   ├── add-payment-method.tsx
+│   │   ├── documents.tsx
+│   │   ├── language.tsx
+│   │   ├── wallets-transactions.tsx
+│   │   ├── deposit.tsx
+│   │   ├── withdraw.tsx
+│   │   ├── sevis-fee-payment.tsx
+│   │   ├── sevis-fee-upload-coupon.tsx
+│   │   ├── confirm-sevis-fee-payment.tsx
+│   │   ├── checkout.tsx
+│   │   ├── success-screen.tsx
+│   │   ├── apply-loan.tsx
+│   │   ├── loan.tsx
+│   │   ├── loans.tsx
+│   │   ├── appointment.tsx
+│   │   ├── booking.tsx
+│   │   ├── interview.tsx
+│   │   ├── scholarships.tsx
+│   │   ├── quiz.tsx
+│   │   ├── rate.tsx
+│   │   └── support/
+│   │       ├── help-center.tsx
+│   │       ├── terms-of-service.tsx
+│   │       └── privacy-policy.tsx
+│   │
+│   ├── _layout.tsx               # Root app layout
+│   ├── index.tsx                 # App entry point
+│   ├── splash.tsx                # Splash screen
+│   ├── welcome.tsx               # Welcome screen
+│   ├── onboarding.tsx            # App onboarding
+│   ├── modal.tsx                 # Modal screens
+│   └── [...not-found].tsx        # 404 handler
+│
+├── assets/                       # Static assets
+│   ├── fonts/                    # Custom fonts (Poppins, SpaceGrotesk)
+│   ├── icons/                    # SVG icons and graphics
+│   ├── images/                   # Image assets
+│   ├── logo/                     # App branding assets
+│   └── lottie/                   # Animation files
+│
+├── components/                   # Reusable UI components
+│   ├── ui/                       # Base UI components
+│   │   ├── typography.tsx
+│   │   ├── button.tsx
+│   │   ├── icons.tsx
+│   │   ├── skeleton-loader.tsx
+│   │   └── bottom-sheet-modal.tsx
+│   ├── shared/                   # Shared components
+│   ├── __tests__/                # Component tests
+│   └── page-wrapper.tsx          # Page layout wrapper
+│
+├── context/                      # React Context providers
+│   ├── auth-context.tsx          # Authentication state management
+│   └── sign-up-context.tsx       # Signup flow state
+│
+├── features/                     # Feature-based modules
+│   ├── auth/                     # Authentication features
+│   │   ├── hooks/                # Auth-related hooks
+│   │   ├── service/              # Auth API services
+│   │   ├── validations/          # Validation schemas
+│   │   ├── kyc-verification-type.tsx
+│   │   ├── kyc-step.tsx
+│   │   ├── kyc-camera.tsx
+│   │   └── gender-selector.tsx
+│   │
+│   ├── home/                     # Home/Dashboard features
+│   │   ├── hooks/                # Home-related hooks
+│   │   ├── service/              # Home API services
+│   │   ├── header.tsx
+│   │   ├── balance-card.tsx
+│   │   ├── quick-actions.tsx
+│   │   └── whatsapp-banner.tsx
+│   │
+│   ├── wallet/                   # Wallet functionality
+│   │   ├── wallet-card.tsx
+│   │   └── transaction-item.tsx
+│   │
+│   ├── payment/                  # Payment features
+│   │   ├── components/           # Payment UI components
+│   │   └── service/              # Payment API services
+│   │
+│   ├── profile/                  # User profile features
+│   │   └── profile-item.tsx
+│   │
+│   ├── booking/                  # Booking/appointment features
+│   │   └── booking-card.tsx
+│   │
+│   └── services/                 # General services
+│       └── server/               # Server communication
+│
+├── constants/                    # Application constants
+│   ├── Colors.ts                 # Color scheme definitions
+│   ├── Data.ts                   # Static data (SEVIS options, etc.)
+│   └── Layout.ts                 # Layout constants
+│
+├── hooks/                        # Custom React hooks
+├── lib/                          # Utility libraries
+│   └── supabase.ts               # Supabase client configuration
+│
+├── types/                        # TypeScript type definitions
+├── utils/                        # Utility functions
+│
+├── .env.local                    # Environment variables
+├── app.json                      # Expo configuration
+├── eas.json                      # EAS Build configuration
+├── package.json                  # Dependencies and scripts
+├── tailwind.config.js            # Tailwind CSS configuration
+├── tsconfig.json                 # TypeScript configuration
+├── babel.config.js               # Babel configuration
+├── metro.config.js               # Metro bundler configuration
+└── README.md                     # Project documentation
+```
+
+================================================================================
+CORE FEATURES & FUNCTIONALITY
+================================================================================
+
+### 1. USER AUTHENTICATION & ONBOARDING
+- **Multi-step Registration**: Personal info → Verification → Password → Documents → Completion
+- **KYC Verification**: Document capture (ID front/back, selfie)
+- **Biometric Authentication**: Face ID/Fingerprint support
+- **PIN Security**: Custom app lock with PIN
+- **Session Management**: Persistent login with auto-refresh
+- **Onboarding Flow**: Introduction to app features
+
+### 2. FINANCIAL MANAGEMENT
+- **Wallet System**: Balance display with show/hide toggle
+- **Deposit/Withdraw**: Fund management with transaction tracking
+- **Payment Processing**: Paystack integration for card payments
+- **Transaction History**: Detailed transaction records with categories
+- **Multiple Currencies**: Support for GHS and USD
+
+### 3. SEVIS FEE PAYMENTS
+- **SEVIS Options**: Multiple fee types (I-901, various costs)
+- **Document Upload**: Coupon/receipt management
+- **Payment Confirmation**: Multi-step verification process
+- **Fee Calculator**: Dynamic pricing based on selection
+
+### 4. LOAN SERVICES
+- **Loan Application**: Multi-step application process
+- **Loan Management**: Track active loans and payments
+- **Credit Assessment**: Basic eligibility checking
+
+### 5. STUDENT SERVICES
+- **Interview Booking**: Appointment scheduling system
+- **Scholarship Information**: Educational funding resources
+- **Document Management**: Secure document storage
+- **SEVIS Compliance**: Specialized student visa support
+
+### 6. ADDITIONAL FEATURES
+- **Rate Calculator**: Currency conversion tools
+- **Quiz System**: Educational content delivery
+- **Notifications**: Real-time updates and alerts
+- **Search Functionality**: Global app search
+- **Support Center**: Help desk with contact forms
+- **Multi-language**: Language selection support
+
+================================================================================
+DATABASE SCHEMA & MODELS
+================================================================================
+
+### Supabase Integration
+The application uses Supabase as the backend-as-a-service, providing:
+
+**Authentication Tables:**
+- users (Supabase Auth)
+- user_metadata (profile information)
+
+**Core Tables (Inferred from code):**
+- `wallets`: User wallet information
+  - user_id (foreign key)
+  - balance (decimal)
+  - currency (string)
+  - created_at, updated_at
+
+- `profiles`: User profile data
+  - user_id (foreign key)
+  - first_name, last_name
+  - phone_number
+  - date_of_birth
+  - gender
+  - profile_image_url
+  - kyc_status
+
+- `transactions`: Financial transaction records
+  - user_id (foreign key)
+  - amount, currency
+  - type (deposit, withdrawal, payment)
+  - status, description
+  - created_at
+
+- `documents`: User document storage
+  - user_id (foreign key)
+  - document_type (passport, visa, id)
+  - file_url, file_name
+  - verification_status
+
+**Security Features:**
+- Row Level Security (RLS) enabled
+- JWT-based authentication
+- Secure file storage with access controls
+
+================================================================================
+API ENDPOINTS & SERVICES
+================================================================================
+
+### Authentication Services
+- `POST /auth/sign-up`: User registration
+- `POST /auth/sign-in`: User login
+- `POST /auth/sign-out`: User logout
+- `GET /auth/session`: Session validation
+- `POST /auth/refresh`: Token refresh
+
+### User Profile Services
+- `GET /profiles/:userId`: Get user profile
+- `PUT /profiles/:userId`: Update profile
+- `POST /profiles/kyc`: Submit KYC documents
+- `GET /profiles/documents`: Get user documents
+
+### Wallet Services
+- `GET /wallets/:userId`: Get wallet balance
+- `POST /wallets/deposit`: Deposit funds
+- `POST /wallets/withdraw`: Withdraw funds
+- `GET /wallets/transactions`: Get transaction history
+
+### Payment Services
+- `POST /payments/sevis`: Process SEVIS fee payment
+- `POST /payments/general`: General payment processing
+- `GET /payments/methods`: Get payment methods
+- `POST /payments/methods`: Add payment method
+
+### File Upload Services
+- `POST /storage/upload`: Upload documents/images
+- `GET /storage/:fileId`: Retrieve stored files
+- `DELETE /storage/:fileId`: Delete files
+
+================================================================================
+ROUTING STRUCTURE
+================================================================================
+
+### Expo Router Configuration
+The app uses Expo Router's file-based routing system:
+
+**Public Routes:**
+- `/` → Entry point/redirect logic
+- `/splash` → Splash screen
+- `/welcome` → Welcome screen
+- `/onboarding` → App introduction
+- `/(auth)/*` → Authentication flow
+
+**Protected Routes (Requires Authentication):**
+- `/(tabs)/*` → Main app navigation
+- `/(root)/*` → Additional screens
+
+**Authentication Flow:**
+1. `/splash` → Initial loading
+2. `/welcome` → First-time users
+3. `/onboarding` → Feature introduction
+4. `/(auth)/sign-up` or `/(auth)/sign-in`
+5. `/(auth)/kyc` → Identity verification
+6. `/(tabs)/` → Main app
+
+**Tab Navigation Structure:**
+- `/(tabs)/` → Home/Dashboard
+- `/(tabs)/payment` → Payment services
+- `/(tabs)/transaction` → Transaction history
+- `/(tabs)/search` → Search functionality
+- `/(tabs)/notifications` → Notifications
+- `/(tabs)/more` → Settings & more options
+
+================================================================================
+STATE MANAGEMENT
+================================================================================
+
+### React Context Providers
+1. **AuthContext**: Global authentication state
+   - User session management
+   - Login/logout functionality
+   - Authentication status
+   - Onboarding state
+
+2. **SignUpContext**: Multi-step registration state
+   - Form data persistence
+   - Step progression tracking
+   - Document upload state
+
+### React Query Integration
+- Server state management
+- Automatic caching and background updates
+- Optimistic updates for better UX
+- Error handling and retry logic
+
+**Key Queries:**
+- `useGetUserProfile`: User profile data
+- `useGetUserWallet`: Wallet balance and info
+- `useGetServices`: Available services
+- Transaction history queries
+- Payment method queries
+
+================================================================================
+SECURITY IMPLEMENTATION
+================================================================================
+
+### Data Security
+- **Supabase RLS**: Row-level security for data isolation
+- **Expo Secure Store**: Encrypted storage for sensitive data
+- **JWT Tokens**: Secure authentication tokens
+- **Input Validation**: Zod schema validation throughout
+
+### App Security
+- **Biometric Lock**: Face ID/Fingerprint authentication
+- **PIN Protection**: Custom numeric PIN security
+- **Session Management**: Automatic token refresh and validation
+- **File Upload Security**: Secure document upload with validation
+
+### Privacy Features
+- **Balance Visibility Toggle**: Hide/show financial information
+- **Secure Document Storage**: Encrypted file storage
+- **Data Encryption**: Client-side encryption for sensitive data
+
+================================================================================
+STYLING & THEMING
+================================================================================
+
+### Design System
+- **Color Scheme**: Dark theme with purple/violet primary colors
+  - Primary: #8B5CF6 (Purple-500)
+  - Background: #26102C (Dark purple)
+  - Cards: Gradient overlays with transparency
+- **Typography**: Poppins and Space Grotesk font families
+- **Component Library**: Custom UI components with consistent styling
+
+### NativeWind Configuration
+- Tailwind CSS classes for React Native
+- Custom color extensions
+- Responsive design utilities
+- Animation and transition support
+
+================================================================================
+DEPLOYMENT & BUILD CONFIGURATION
+================================================================================
+
+### Expo Configuration (app.json)
+- **Bundle ID**: com.oseikusi.bpay
+- **App Name**: Bpay
+- **Orientation**: Portrait only
+- **Platform Support**: iOS, Android, Web
+- **New Architecture**: Enabled (React Native's new architecture)
+
+### EAS Build Setup
+- **Project ID**: 3c509751-61d2-4e1b-885b-418afb6fb62d
+- **Build Profiles**: Development, Preview, Production
+- **Code Signing**: Configured for iOS and Android
+
+### Environment Configuration
+Required environment variables:
+- `EXPO_PUBLIC_SUPABASE_URL`: Supabase project URL
+- `EXPO_PUBLIC_SUPABASE_ANON_KEY`: Supabase anonymous key
+- Additional Paystack configuration keys
+
+================================================================================
+DEVELOPMENT WORKFLOW
+================================================================================
+
+### Available Scripts
+- `pnpm start`: Start Expo development server
+- `pnpm android`: Run on Android device/emulator
+- `pnpm ios`: Run on iOS device/simulator
+- `pnpm web`: Run in web browser
+- `pnpm test`: Run Jest tests
+
+### Development Tools
+- **Hot Reload**: Instant code updates during development
+- **TypeScript**: Type safety and developer experience
+- **ESLint/Prettier**: Code formatting and linting
+- **Jest**: Unit testing framework
+
+### Package Management
+- **pnpm**: Fast, disk space efficient package manager
+- **Lock File**: pnpm-lock.yaml for reproducible builds
+- **Expo Doctor**: Dependency validation and warnings
+
+================================================================================
+TESTING STRATEGY
+================================================================================
+
+### Test Configuration
+- **Jest**: Primary testing framework
+- **Jest-Expo**: Expo-specific test preset
+- **React Test Renderer**: Component testing utilities
+
+### Test Coverage Areas
+- Component rendering and behavior
+- Authentication flow validation
+- API service integration
+- Form validation logic
+- Navigation flow testing
+
+================================================================================
+PERFORMANCE OPTIMIZATIONS
+================================================================================
+
+### Code Optimization
+- **Lazy Loading**: Dynamic imports for screens
+- **Memoization**: React.memo for expensive components
+- **Image Optimization**: Expo Image for better performance
+- **Bundle Splitting**: Efficient code splitting strategies
+
+### UX Optimizations
+- **Skeleton Loading**: Loading states for better perceived performance
+- **Optimistic Updates**: Immediate UI feedback
+- **Background Sync**: Offline capability preparation
+- **Gesture Handling**: Smooth animations and interactions
+
+================================================================================
+ACCESSIBILITY FEATURES
+================================================================================
+
+### Accessibility Support
+- **Screen Reader**: VoiceOver/TalkBack compatibility
+- **High Contrast**: Dark theme with sufficient color contrast
+- **Touch Targets**: Appropriately sized interactive elements
+- **Navigation**: Keyboard and assistive technology support
+
+================================================================================
+THIRD-PARTY INTEGRATIONS
+================================================================================
+
+### Payment Processing
+- **Paystack**: Primary payment gateway
+- **WebView Integration**: Secure payment flow
+- **Multiple Payment Methods**: Card, bank transfer support
+
+### Cloud Services
+- **Supabase**: Backend-as-a-Service
+- **File Storage**: Secure document and image storage
+- **Real-time Features**: WebSocket connections for live updates
+
+### Communication
+- **WhatsApp Integration**: Direct messaging support
+- **Push Notifications**: Real-time alerts and updates
+- **Email Services**: Account verification and notifications
+
+================================================================================
+FUTURE DEVELOPMENT ROADMAP
+================================================================================
+
+### Planned Features (Based on "Coming Soon" indicators)
+- **Interview Booking**: Enhanced appointment system
+- **Scholarship Portal**: Comprehensive educational funding
+- **Loan System**: Advanced credit services
+- **Advanced Analytics**: Financial insights and reporting
+
+### Technical Improvements
+- **Offline Support**: Local data synchronization
+- **Performance Monitoring**: Crash reporting and analytics
+- **Advanced Security**: Multi-factor authentication
+- **API Optimization**: Caching and performance improvements
+
+================================================================================
+TROUBLESHOOTING & COMMON ISSUES
+================================================================================
+
+### Development Issues
+- **Metro Bundle**: Clear cache with `npx expo start --clear`
+- **Type Errors**: Check TypeScript configuration
+- **Navigation**: Verify Expo Router file structure
+- **Supabase**: Validate environment variables
+
+### Production Considerations
+- **Build Optimization**: Enable Hermes engine
+- **Security**: Environment variable protection
+- **Performance**: Bundle size optimization
+- **Compatibility**: Platform-specific testing
+
+================================================================================
+CONTACT & SUPPORT
+================================================================================
+
+### Development Team
+- **Developer**: Osei Adu Kusi
+- **Bundle ID**: com.oseikusi.bpay
+- **Repository**: Private project repository
+
+### Support Channels
+- **Help Center**: In-app support system
+- **Email Support**: Contact form integration
+- **Documentation**: README.md and inline documentation
+
+================================================================================
+CONCLUSION
+================================================================================
+
+BPay represents a comprehensive mobile financial management solution specifically
+designed for students and individuals requiring specialized financial services.
+The application combines modern React Native development practices with robust
+backend services to deliver a secure, scalable, and user-friendly financial
+platform.
+
+The modular architecture, comprehensive security measures, and extensive feature
+set position BPay as a complete solution for mobile financial management with
+particular strength in student-focused services like SEVIS fee payments and
+document management.
+
+The development stack leverages industry-standard tools and frameworks, ensuring
+maintainability, scalability, and performance while providing an excellent
+developer experience for future enhancements.
+
+================================================================================
+Last Updated: September 22, 2025
+Version: 1.0.0
+Documentation Status: Complete
+================================================================================
