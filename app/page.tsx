@@ -185,8 +185,8 @@ export default function CleanHomePage() {
       />
       <div className="min-h-screen bg-white dark:bg-gray-950  text-gray-900 dark:text-white relative">
         {/* Pattern Overlays */}
-        <div className="absolute inset-0 pattern-dots-overlay pointer-events-none"></div>
-        <div className="absolute inset-0 pattern-waves pointer-events-none"></div>
+        {/* <div className="absolute inset-0 pattern-dots-overlay pointer-events-none"></div>
+        <div className="absolute inset-0 pattern-waves pointer-events-none"></div> */}
         {/* Animated Oval Navigation */}
         <motion.nav
           role="navigation"
@@ -280,17 +280,9 @@ export default function CleanHomePage() {
               transition={{ duration: 0.3 }}
             >
               <SafeThemeToggle />
-              {!isScrolled && (
-                <Button
-                  variant="ghost"
-                  className="hidden md:inline-flex text-sm"
-                  aria-label="Sign in to your account"
-                >
-                  Sign In
-                </Button>
-              )}
+
               <Button
-                className={`bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 dark:neon-glow-purple dark:glass-button transition-all duration-300 ${
+                className={`bg-gradient-to-r text-white from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 dark:neon-glow-purple dark:glass-button transition-all duration-300 ${
                   isScrolled ? "px-4 py-2 text-sm" : "px-6 py-3"
                 }`}
                 aria-label="Get started with BPay"
@@ -304,13 +296,38 @@ export default function CleanHomePage() {
         {/* Hero Section */}
         <main>
           <section
-            className="relative pt-24 pb-16 bg-[#F5F0E8] dark:bg-gray-900 light:pattern-elegant-light dark:pattern-elegant-dark"
+            className="relative pt-32 pb-16 bg-[#F5F0E8] dark:bg-gray-900 light:pattern-elegant-light dark:pattern-elegant-dark"
             aria-labelledby="hero-title"
           >
+            {/* <div
+              className="absolute dark:hidden inset-0 z-0"
+              style={{
+                background:
+                  "radial-gradient(125% 125% at 50% 90%, #fff 40%, #350136 100%)",
+              }}
+            /> */}
+
+            {/* <div
+              className="absolute dark:hidden  inset-0 z-0"
+              style={{
+                background:
+                  "radial-gradient(125% 125% at 50% 10%, #fff 40%, #7c3aed 100%)",
+              }}
+            /> */}
+
+            {/* Azure Depths */}
+            <div
+              className="absolute hidden bg-fixed dark:block inset-0 z-0"
+              style={{
+                background:
+                  "radial-gradient(125% 125% at 50% 100%, #000000 50%, #350136 100%)",
+              }}
+            />
+
             {/* Mesh Gradient Overlay */}
             <div className="absolute inset-0 light:mesh-gradient-light dark:mesh-gradient-dark pointer-events-none"></div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center min-h-[500px] sm:min-h-[600px]">
+              <div className="grid relative z-10 lg:grid-cols-3 gap-8 lg:gap-12 items-center min-h-[500px] sm:min-h-[600px]">
                 {/* Left Column - Main Hero Card */}
                 <motion.div
                   className="relative col-span-2"
@@ -318,7 +335,7 @@ export default function CleanHomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <Card className="bg-white  dark:bg-gray-800 dark:glass-card p-4 sm:p-6 lg:p-8 shadow-lg border-0 rounded-2xl sm:rounded-3xl dark:neon-border">
+                  <Card className="bg-white/30  dark:bg-gray-800/20 backdrop-blur-sm dark:glass-card p-4 sm:p-6 lg:p-8 shadow-lg border-0 rounded-2xl sm:rounded-3xl dark:neon-border">
                     <CardContent className="p-0">
                       {/* Navigation dots */}
                       <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -362,31 +379,6 @@ export default function CleanHomePage() {
                                 whileTap={{ scale: 0.98 }}
                               >
                                 <div className="w-8 h-8  rounded-lg flex items-center justify-center">
-                                  {/* <span className="text-white text-xs font-bold">📱</span> */}
-                                  <Image
-                                    src={"/assets/icons/appstore.svg"}
-                                    width={40}
-                                    height={40}
-                                    alt="Google Play"
-                                  />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    Download on the
-                                  </p>
-                                  <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                                    App Store
-                                  </p>
-                                </div>
-                              </motion.a>
-
-                              <motion.a
-                                href="#"
-                                className="glass-card hover:glass-card-hover rounded-xl p-3 flex items-center space-x-3 group transition-all duration-300"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                              >
-                                <div className="w-8 h-8  rounded-lg flex items-center justify-center">
                                   {/* <span className="text-white text-xs font-bold">🤖</span> */}
                                   <Image
                                     src={"/assets/icons/googleplay.svg"}
@@ -404,41 +396,32 @@ export default function CleanHomePage() {
                                   </p>
                                 </div>
                               </motion.a>
+                              <motion.a
+                                href="#"
+                                className="glass-card hover:glass-card-hover rounded-xl p-3 flex items-center space-x-3 group transition-all duration-300"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                              >
+                                <div className="w-8 h-8  rounded-lg flex items-center justify-center">
+                                  {/* <span className="text-white text-xs font-bold">📱</span> */}
+                                  <Image
+                                    src={"/assets/icons/appstore.svg"}
+                                    width={40}
+                                    height={40}
+                                    alt="Google Play"
+                                  />
+                                </div>
+                                <div>
+                                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                                    Download on the
+                                  </p>
+                                  <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                                    App Store
+                                  </p>
+                                </div>
+                              </motion.a>
                             </div>
                           </div>
-                          {/* <div className="flex flex-col gap-3">
-                            <Button className="bg-purple-900 py-8 hover:bg-purple-800 text-white rounded-xl h-12 justify-start px-4">
-                              <Image
-                                src={"/assets/icons/appstore.svg"}
-                                width={40}
-                                height={40}
-                                alt="Google Play"
-                              />
-                              <div className="text-left">
-                                <div className="text-xs opacity-80">
-                                  Download on
-                                </div>
-                                <div className="font-semibold">App Store</div>
-                              </div>
-                            </Button>
-                            <Button
-                              variant="outline"
-                              className="border-gray-900 hover:bg-transparent hover:text-gray-800 text-gray-900 py-8 dark:border-white dark:text-white rounded-xl h-12 justify-start px-4"
-                            >
-                              <Image
-                                src={"/assets/icons/googleplay.svg"}
-                                width={40}
-                                height={40}
-                                alt="Google Play"
-                              />
-                              <div className="text-left">
-                                <div className="text-xs opacity-80">
-                                  Get it on
-                                </div>
-                                <div className="font-semibold">Google Play</div>
-                              </div>
-                            </Button>
-                          </div> */}
 
                           {/* Social Proof with Avatars */}
                         </div>
@@ -455,52 +438,18 @@ export default function CleanHomePage() {
                             }}
                           >
                             {/* Hand illustration */}
-                            <div className="absolute -bottom-8 -left-4 w-24 h-32 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full opacity-80 transform rotate-12"></div>
+                            <div className="absolute -z-[1] -bottom-1  md:-bottom-4 -left-4 w-24 h-32 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full opacity-80 transform rotate-12"></div>
+                            <div className="absolute -z-[1] -top-1  md:-top-8 -right-4 w-24 h-32 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full opacity-80 transform rotate-12"></div>
 
                             {/* Phone */}
-                            <div className="w-28 h-56 sm:w-32 sm:h-64 lg:w-36 lg:h-72 bg-gray-900 rounded-2xl sm:rounded-3xl p-1 shadow-xl relative z-10">
-                              <div className="w-full h-full bg-white rounded-[20px] overflow-hidden">
-                                {/* Status bar */}
-                                <div className="bg-blue-600 h-8 flex items-center justify-center">
-                                  <span className="text-white text-xs font-medium">
-                                    9:41
-                                  </span>
-                                </div>
-
-                                {/* App content */}
-                                <div className="p-3 space-y-3">
-                                  <div className="text-xs font-bold text-gray-900">
-                                    BPAY Dashboard
-                                  </div>
-
-                                  {/* Balance card */}
-                                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-3 text-white">
-                                    <div className="text-xs opacity-80">
-                                      Total Balance
-                                    </div>
-                                    <div className="text-lg font-bold">
-                                      $12,543
-                                    </div>
-                                  </div>
-
-                                  {/* Quick actions */}
-                                  <div className="grid grid-cols-2 gap-2">
-                                    <div className="bg-yellow-50 rounded-lg p-2 text-center">
-                                      <div className="w-6 h-6 bg-yellow-500 rounded mx-auto mb-1"></div>
-                                      <div className="text-xs font-medium">
-                                        SEVIS
-                                      </div>
-                                    </div>
-                                    <div className="bg-green-50 rounded-lg p-2 text-center">
-                                      <div className="w-6 h-6 bg-green-500 rounded mx-auto mb-1"></div>
-                                      <div className="text-xs font-medium">
-                                        Credit
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            <Image
+                              src={"/assets/images/mock-up-2.svg"}
+                              width={4000}
+                              height={4400}
+                              objectFit="cover"
+                              alt=""
+                              className="w-64 sm:w-72 md:w-80 lg:w-96  drop-shadow-2xl"
+                            />
                           </motion.div>
                         </div>
                       </div>
@@ -560,14 +509,14 @@ export default function CleanHomePage() {
                 </motion.div>
 
                 {/* Right Column - Secondary Cards */}
-                <div className="space-y-6">
+                <div className="space-y-6 col-span-2 lg:col-span-1">
                   {/* Save Money Card */}
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    <Card className="bg-white dark:bg-gray-800 dark:glass-card p-6 shadow-lg border-0 rounded-3xl dark:neon-glow-blue">
+                    <Card className="bg-white/20 backdrop-blur-sm dark:bg-gray-800/40 dark:glass-card p-6 shadow-lg border-0 rounded-3xl dark:neon-glow-blue">
                       <CardContent className="p-0">
                         <div className="flex items-start gap-4">
                           <div className="flex-1">
@@ -595,7 +544,7 @@ export default function CleanHomePage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    <Card className="bg-white dark:bg-gray-800 dark:glass-card p-6 shadow-lg border-0 rounded-3xl dark:neon-glow-cyan">
+                    <Card className="bg-white/20 backdrop-blur-sm dark:bg-gray-800/40 dark:glass-card p-6 shadow-lg border-0 rounded-3xl dark:neon-glow-cyan">
                       <CardContent className="p-0">
                         <div className="flex items-start gap-4">
                           <div className="flex-1">
@@ -643,7 +592,7 @@ export default function CleanHomePage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                   >
-                    <Card className="bg-gray-900 dark:bg-gray-800 dark:glass-card p-6 shadow-lg border-0 rounded-3xl text-white dark:pulse-neon">
+                    <Card className="bg-gray-900/80 backdrop-blur-sm dark:bg-gray-800 dark:glass-card p-6 shadow-lg border-0 rounded-3xl text-white dark:pulse-neon">
                       <CardContent className="p-0">
                         <div className="flex items-start gap-4">
                           <div className="flex-1">
@@ -723,7 +672,10 @@ export default function CleanHomePage() {
         </main>
 
         {/* Student Testimonials Section */}
-        <section className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <section
+          className="py-20  relative dark:bg-gray-900 overflow-hidden"
+          // className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
+        >
           {/* Background Pattern */}
           <div className="absolute inset-0 pattern-dots-overlay opacity-20 pointer-events-none"></div>
 
@@ -844,10 +796,11 @@ export default function CleanHomePage() {
         <section
           id="features"
           className="relative py-20 light:pattern-elegant-light dark:pattern-elegant-dark"
+          // className="relative py-20 light:pattern-elegant-light dark:pattern-elegant-dark"
           aria-labelledby="features-title"
         >
           {/* Subtle Wave Pattern */}
-          <div className="absolute inset-0 pattern-waves opacity-30 pointer-events-none"></div>
+          <div className="absolute inset-0 pattern-waves  opacity-30 pointer-events-none"></div>
           <div className="max-w-7xl mx-auto px-6">
             <header className="text-center mb-16">
               <h2
@@ -915,7 +868,7 @@ export default function CleanHomePage() {
                   viewport={{ once: true }}
                   whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 >
-                  <Card className="h-full border border-gray-200 dark:border-gray-800 dark:glass-card hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl dark:hover:neon-glow-purple relative overflow-hidden group">
+                  <Card className="h-full bg-purple-100/60 dark:bg-purple-900/20 border-gray-200 dark:border-gray-800 dark:glass-card hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl dark:hover:neon-glow-purple relative overflow-hidden group">
                     {/* Slanted accent overlay */}
                     <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-500/5 to-blue-500/5 transform rotate-45 translate-x-8 -translate-y-8 group-hover:scale-110 transition-transform duration-300"></div>
 
@@ -1211,31 +1164,6 @@ export default function CleanHomePage() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <div className="w-8 h-8  rounded-lg flex items-center justify-center">
-                        {/* <span className="text-white text-xs font-bold">📱</span> */}
-                        <Image
-                          src={"/assets/icons/appstore.svg"}
-                          width={40}
-                          height={40}
-                          alt="Google Play"
-                        />
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          Download on the
-                        </p>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                          App Store
-                        </p>
-                      </div>
-                    </motion.a>
-
-                    <motion.a
-                      href="#"
-                      className="glass-card hover:glass-card-hover rounded-xl p-3 flex items-center space-x-3 group transition-all duration-300"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <div className="w-8 h-8  rounded-lg flex items-center justify-center">
                         {/* <span className="text-white text-xs font-bold">🤖</span> */}
                         <Image
                           src={"/assets/icons/googleplay.svg"}
@@ -1250,6 +1178,31 @@ export default function CleanHomePage() {
                         </p>
                         <p className="text-sm font-semibold text-gray-900 dark:text-white">
                           Google Play
+                        </p>
+                      </div>
+                    </motion.a>
+
+                    <motion.a
+                      href="#"
+                      className="glass-card hover:glass-card-hover rounded-xl p-3 flex items-center space-x-3 group transition-all duration-300"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="w-8 h-8  rounded-lg flex items-center justify-center">
+                        {/* <span className="text-white text-xs font-bold">📱</span> */}
+                        <Image
+                          src={"/assets/icons/appstore.svg"}
+                          width={40}
+                          height={40}
+                          alt="Google Play"
+                        />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Download on the
+                        </p>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                          App Store
                         </p>
                       </div>
                     </motion.a>
