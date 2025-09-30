@@ -41,7 +41,9 @@ export default function CleanHomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
   const [activeFeature, setActiveFeature] = useState(0);
 
   useEffect(() => {
@@ -233,10 +235,10 @@ export default function CleanHomePage() {
           aria-label="Main navigation"
           className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
             isScrolled
-              ? "glass-nav rounded-full px-6 py-3 mx-4 max-w-6xl shadow-2xl"
+              ? "glass-nav rounded-full px-6 py-3 mx-4  shadow-2xl"
               : "bg-transparent rounded-2xl px-6 py-4 max-w-7xl w-full"
           }`}
-          initial={{ opacity: 0, y: -20, scale: 0.9 }}
+          initial={{ opacity: 0, y: -20, x: 0, scale: 0.9 }}
           animate={{
             opacity: 1,
             y: 0,
@@ -245,7 +247,7 @@ export default function CleanHomePage() {
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-x-10 justify-between w-full">
             {/* Logo */}
             <motion.div
               className="flex items-center cursor-pointer z-10"
@@ -260,28 +262,33 @@ export default function CleanHomePage() {
                   className="object-contain"
                 />
               </div>
-              <span className={`font-bold transition-all duration-300 ${isScrolled ? "text-lg" : "text-xl"}`}>
+              <span
+                className={`font-bold transition-all duration-300 ${
+                  isScrolled ? "text-lg" : "text-xl"
+                }`}
+              >
                 BPay
               </span>
             </motion.div>
 
             {/* Desktop Navigation */}
             <motion.div
-              className={`items-center space-x-8 ${isScrolled ? "hidden" : "hidden lg:flex"}`}
-              animate={{ opacity: isScrolled ? 0 : 1 }}
+              className={`items-center space-x-8  hidden md:flex `}
+              // className={`items-center space-x-8 ${isScrolled ? "hidden" : "hidden lg:flex"}`}
+              // animate={{ opacity: isScrolled ? 0 : 1 }}
               transition={{ duration: 0.3 }}
             >
               {/* Services Dropdown */}
               <div className="relative group">
                 <button
                   className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
-                  onMouseEnter={() => handleDropdownEnter('services')}
+                  onMouseEnter={() => handleDropdownEnter("services")}
                   onMouseLeave={handleDropdownLeave}
                 >
                   Services
                   <ChevronDown className="w-4 h-4" />
                 </button>
-                {openDropdown === 'services' && (
+                {openDropdown === "services" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -290,28 +297,44 @@ export default function CleanHomePage() {
                     onMouseEnter={handleDropdownStay}
                     onMouseLeave={handleDropdownLeave}
                   >
-                    <Link href="/student-loans" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <Link
+                      href="/student-loans"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
                       <GraduationCap className="w-5 h-5 text-purple-500" />
                       <div>
                         <div className="font-medium">Student Loans</div>
                         <div className="text-sm text-gray-500">Coming Soon</div>
                       </div>
                     </Link>
-                    <Link href="#features" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <Link
+                      href="#features"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
                       <DollarSign className="w-5 h-5 text-green-500" />
                       <div>
                         <div className="font-medium">SEVIS Payments</div>
-                        <div className="text-sm text-gray-500">Instant & secure</div>
+                        <div className="text-sm text-gray-500">
+                          Instant & secure
+                        </div>
                       </div>
                     </Link>
-                    <Link href="#features" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <Link
+                      href="#features"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
                       <CreditCard className="w-5 h-5 text-blue-500" />
                       <div>
                         <div className="font-medium">Credit Building</div>
-                        <div className="text-sm text-gray-500">Build US credit</div>
+                        <div className="text-sm text-gray-500">
+                          Build US credit
+                        </div>
                       </div>
                     </Link>
-                    <Link href="/appointments" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <Link
+                      href="/appointments"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
                       <Users className="w-5 h-5 text-teal-500" />
                       <div>
                         <div className="font-medium">Appointments</div>
@@ -326,13 +349,13 @@ export default function CleanHomePage() {
               <div className="relative group">
                 <button
                   className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
-                  onMouseEnter={() => handleDropdownEnter('resources')}
+                  onMouseEnter={() => handleDropdownEnter("resources")}
                   onMouseLeave={handleDropdownLeave}
                 >
                   Resources
                   <ChevronDown className="w-4 h-4" />
                 </button>
-                {openDropdown === 'resources' && (
+                {openDropdown === "resources" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -341,32 +364,58 @@ export default function CleanHomePage() {
                     onMouseEnter={handleDropdownStay}
                     onMouseLeave={handleDropdownLeave}
                   >
-                    <Link href="/blog" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-blue-500 rounded text-white flex items-center justify-center text-xs">📖</div>
+                    <Link
+                      href="/blog"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-blue-500 rounded text-white flex items-center justify-center text-xs">
+                        📖
+                      </div>
                       <div>
                         <div className="font-medium">Blog</div>
-                        <div className="text-sm text-gray-500">Financial tips & guides</div>
+                        <div className="text-sm text-gray-500">
+                          Financial tips & guides
+                        </div>
                       </div>
                     </Link>
-                    <Link href="/help" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded text-white flex items-center justify-center text-xs">❓</div>
+                    <Link
+                      href="/help"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded text-white flex items-center justify-center text-xs">
+                        ❓
+                      </div>
                       <div>
                         <div className="font-medium">Help Center</div>
                         <div className="text-sm text-gray-500">Get support</div>
                       </div>
                     </Link>
-                    <Link href="/faq" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded text-white flex items-center justify-center text-xs">💬</div>
+                    <Link
+                      href="/faq"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded text-white flex items-center justify-center text-xs">
+                        💬
+                      </div>
                       <div>
                         <div className="font-medium">FAQ</div>
-                        <div className="text-sm text-gray-500">Quick answers</div>
+                        <div className="text-sm text-gray-500">
+                          Quick answers
+                        </div>
                       </div>
                     </Link>
-                    <Link href="/community" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-pink-500 to-purple-500 rounded text-white flex items-center justify-center text-xs">👥</div>
+                    <Link
+                      href="/community"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-pink-500 to-purple-500 rounded text-white flex items-center justify-center text-xs">
+                        👥
+                      </div>
                       <div>
                         <div className="font-medium">Community</div>
-                        <div className="text-sm text-gray-500">Connect with students</div>
+                        <div className="text-sm text-gray-500">
+                          Connect with students
+                        </div>
                       </div>
                     </Link>
                   </motion.div>
@@ -377,13 +426,13 @@ export default function CleanHomePage() {
               <div className="relative group">
                 <button
                   className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
-                  onMouseEnter={() => handleDropdownEnter('company')}
+                  onMouseEnter={() => handleDropdownEnter("company")}
                   onMouseLeave={handleDropdownLeave}
                 >
                   Company
                   <ChevronDown className="w-4 h-4" />
                 </button>
-                {openDropdown === 'company' && (
+                {openDropdown === "company" && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -392,16 +441,31 @@ export default function CleanHomePage() {
                     onMouseEnter={handleDropdownStay}
                     onMouseLeave={handleDropdownLeave}
                   >
-                    <Link href="/mission" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded text-white flex items-center justify-center text-xs">🎯</div>
+                    <Link
+                      href="/mission"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded text-white flex items-center justify-center text-xs">
+                        🎯
+                      </div>
                       <div className="font-medium">Our Mission</div>
                     </Link>
-                    <Link href="/security" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded text-white flex items-center justify-center text-xs">🔒</div>
+                    <Link
+                      href="/security"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded text-white flex items-center justify-center text-xs">
+                        🔒
+                      </div>
                       <div className="font-medium">Security</div>
                     </Link>
-                    <Link href="/careers" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded text-white flex items-center justify-center text-xs">💼</div>
+                    <Link
+                      href="/careers"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded text-white flex items-center justify-center text-xs">
+                        💼
+                      </div>
                       <div className="font-medium">Careers</div>
                     </Link>
                   </motion.div>
@@ -410,7 +474,7 @@ export default function CleanHomePage() {
 
               <Link
                 href="/live-chat"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="text-gray-600 hidden lg:block dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 Support
               </Link>
@@ -423,18 +487,20 @@ export default function CleanHomePage() {
               transition={{ duration: 0.3 }}
             >
               <SafeThemeToggle />
-              <Button
+              {/* <Button
                 variant="outline"
-                className={`transition-all duration-300 ${isScrolled ? "px-3 py-2 text-sm" : "px-4 py-2"}`}
+                className={`transition-all duration-300 ${
+                  isScrolled ? "px-3 py-2 text-sm" : "px-4 py-2"
+                }`}
               >
                 Sign In
-              </Button>
+              </Button> */}
               <Button
                 className={`bg-gradient-to-r text-white from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ${
                   isScrolled ? "px-4 py-2 text-sm" : "px-6 py-3"
                 }`}
               >
-                {isScrolled ? "Get App" : "Get Started"}
+                Get App
               </Button>
             </motion.div>
 
@@ -446,7 +512,11 @@ export default function CleanHomePage() {
                 className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                 aria-label="Toggle mobile menu"
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>
@@ -463,53 +533,119 @@ export default function CleanHomePage() {
               <div className="space-y-1">
                 {/* Mobile Services */}
                 <div className="py-2">
-                  <div className="font-medium text-gray-900 dark:text-white mb-2">Services</div>
+                  <div className="font-medium text-gray-900 dark:text-white mb-2">
+                    Services
+                  </div>
                   <div className="pl-4 space-y-2">
-                    <Link href="/student-loans" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                    <Link
+                      href="/student-loans"
+                      className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
                       <GraduationCap className="w-4 h-4" />
-                      Student Loans <Badge className="text-xs bg-amber-100 text-amber-800">Soon</Badge>
+                      Student Loans{" "}
+                      <Badge className="text-xs bg-amber-100 text-amber-800">
+                        Soon
+                      </Badge>
                     </Link>
-                    <Link href="#features" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                    <Link
+                      href="#features"
+                      className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
                       <DollarSign className="w-4 h-4" />
                       SEVIS Payments
                     </Link>
-                    <Link href="#features" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                    <Link
+                      href="#features"
+                      className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
                       <CreditCard className="w-4 h-4" />
                       Credit Building
                     </Link>
-                    <Link href="/appointments" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                    <Link
+                      href="/appointments"
+                      className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
                       <Users className="w-4 h-4" />
-                      Appointments <Badge className="text-xs bg-amber-100 text-amber-800">Soon</Badge>
+                      Appointments{" "}
+                      <Badge className="text-xs bg-amber-100 text-amber-800">
+                        Soon
+                      </Badge>
                     </Link>
                   </div>
                 </div>
 
                 {/* Mobile Resources */}
                 <div className="py-2">
-                  <div className="font-medium text-gray-900 dark:text-white mb-2">Resources</div>
+                  <div className="font-medium text-gray-900 dark:text-white mb-2">
+                    Resources
+                  </div>
                   <div className="pl-4 space-y-2">
-                    <Link href="/blog" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Blog</Link>
-                    <Link href="/help" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Help Center</Link>
-                    <Link href="/faq" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">FAQ</Link>
-                    <Link href="/community" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Community</Link>
+                    <Link
+                      href="/blog"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      Blog
+                    </Link>
+                    <Link
+                      href="/help"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      Help Center
+                    </Link>
+                    <Link
+                      href="/faq"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      FAQ
+                    </Link>
+                    <Link
+                      href="/community"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      Community
+                    </Link>
                   </div>
                 </div>
 
                 {/* Mobile Company */}
                 <div className="py-2">
-                  <div className="font-medium text-gray-900 dark:text-white mb-2">Company</div>
+                  <div className="font-medium text-gray-900 dark:text-white mb-2">
+                    Company
+                  </div>
                   <div className="pl-4 space-y-2">
-                    <Link href="/mission" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Our Mission</Link>
-                    <Link href="/security" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Security</Link>
-                    <Link href="/careers" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Careers</Link>
+                    <Link
+                      href="/mission"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      Our Mission
+                    </Link>
+                    <Link
+                      href="/security"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      Security
+                    </Link>
+                    <Link
+                      href="/careers"
+                      className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
+                    >
+                      Careers
+                    </Link>
                   </div>
                 </div>
 
-                <Link href="/live-chat" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2">Support</Link>
+                <Link
+                  href="/live-chat"
+                  className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                >
+                  Support
+                </Link>
 
                 {/* Mobile Actions */}
                 <div className="pt-4 space-y-3">
-                  <Button variant="outline" className="w-full">Sign In</Button>
+                  <Button variant="outline" className="w-full">
+                    Sign In
+                  </Button>
                   <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white">
                     Get Started
                   </Button>
@@ -1045,7 +1181,8 @@ export default function CleanHomePage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                Comprehensive financial solutions designed specifically for international students
+                Comprehensive financial solutions designed specifically for
+                international students
               </motion.p>
             </header>
 
@@ -1068,24 +1205,28 @@ export default function CleanHomePage() {
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                       <Image
-                        src={[
-                          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
-                          "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
-                          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
-                          "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
-                          "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
-                          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-                          "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&crop=center",
-                        ][activeFeature]}
-                        alt={[
-                          "SEVIS Fee Payments",
-                          "Build Credit Score",
-                          "Student Loans",
-                          "Bank-Level Security",
-                          "Global Transfers",
-                          "Instant Processing",
-                          "Appointment Booking",
-                        ][activeFeature]}
+                        src={
+                          [
+                            "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
+                            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
+                            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
+                            "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
+                            "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
+                            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+                            "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&crop=center",
+                          ][activeFeature]
+                        }
+                        alt={
+                          [
+                            "SEVIS Fee Payments",
+                            "Build Credit Score",
+                            "Student Loans",
+                            "Bank-Level Security",
+                            "Global Transfers",
+                            "Instant Processing",
+                            "Appointment Booking",
+                          ][activeFeature]
+                        }
                         fill
                         className="object-cover rounded-xl"
                       />
@@ -1102,27 +1243,31 @@ export default function CleanHomePage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        {[
-                          "SEVIS Fee Payments",
-                          "Build Credit Score",
-                          "Student Loans",
-                          "Bank-Level Security",
-                          "Global Transfers",
-                          "Instant Processing",
-                          "Appointment Booking",
-                        ][activeFeature]}
+                        {
+                          [
+                            "SEVIS Fee Payments",
+                            "Build Credit Score",
+                            "Student Loans",
+                            "Bank-Level Security",
+                            "Global Transfers",
+                            "Instant Processing",
+                            "Appointment Booking",
+                          ][activeFeature]
+                        }
                       </motion.h3>
                       <motion.div
                         key={`bar-${activeFeature}`}
-                        className={`h-1 w-16 bg-gradient-to-r ${[
-                          "from-green-500 to-emerald-600",
-                          "from-blue-500 to-cyan-600",
-                          "from-purple-500 to-violet-600",
-                          "from-orange-500 to-red-600",
-                          "from-pink-500 to-rose-600",
-                          "from-indigo-500 to-purple-600",
-                          "from-teal-500 to-cyan-600",
-                        ][activeFeature]} rounded-full`}
+                        className={`h-1 w-16 bg-gradient-to-r ${
+                          [
+                            "from-green-500 to-emerald-600",
+                            "from-blue-500 to-cyan-600",
+                            "from-purple-500 to-violet-600",
+                            "from-orange-500 to-red-600",
+                            "from-pink-500 to-rose-600",
+                            "from-indigo-500 to-purple-600",
+                            "from-teal-500 to-cyan-600",
+                          ][activeFeature]
+                        } rounded-full`}
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
@@ -1134,11 +1279,19 @@ export default function CleanHomePage() {
                       className="absolute -inset-4 border-2 border-purple-500/30 rounded-xl"
                       animate={{
                         rotate: 360,
-                        scale: [1, 1.05, 1]
+                        scale: [1, 1.05, 1],
                       }}
                       transition={{
-                        rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                        scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                        rotate: {
+                          duration: 20,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                        scale: {
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
                       }}
                     />
                   </div>
@@ -1148,99 +1301,115 @@ export default function CleanHomePage() {
                 {[
                   {
                     title: "SEVIS Fee Payments",
-                    description: "Pay your I-901 SEVIS fees instantly with zero hassle and immediate confirmation.",
+                    description:
+                      "Pay your I-901 SEVIS fees instantly with zero hassle and immediate confirmation.",
                     color: "from-green-500 to-emerald-600",
                     accent: "border-green-500",
                     bgAccent: "bg-green-50 dark:bg-green-900/20",
                     icon: DollarSign,
-                    position: "top-6 left-1/2 -translate-x-1/2 -translate-y-full", // Top - closer
+                    position:
+                      "top-6 left-1/2 -translate-x-1/2 -translate-y-full", // Top - closer
                   },
                   {
                     title: "Build Credit Score",
-                    description: "Establish your US credit history with everyday spending and smart financial tools.",
+                    description:
+                      "Establish your US credit history with everyday spending and smart financial tools.",
                     color: "from-blue-500 to-cyan-600",
                     accent: "border-blue-500",
                     bgAccent: "bg-blue-50 dark:bg-blue-900/20",
                     icon: CreditCard,
-                    position: "top-1/4 -right-16 translate-x-full -translate-y-1/2", // Top Right - closer
+                    position:
+                      "top-1/4 -right-16 translate-x-full -translate-y-1/2", // Top Right - closer
                   },
                   {
                     title: "Student Loans",
-                    description: "Access flexible loan options with competitive rates designed for students.",
+                    description:
+                      "Access flexible loan options with competitive rates designed for students.",
                     color: "from-purple-500 to-violet-600",
                     accent: "border-purple-500",
                     bgAccent: "bg-purple-50 dark:bg-purple-900/20",
                     icon: GraduationCap,
                     comingSoon: true,
-                    position: "bottom-1/4 -right-16 translate-x-full translate-y-1/2", // Bottom Right - closer
+                    position:
+                      "bottom-1/4 -right-16 translate-x-full translate-y-1/2", // Bottom Right - closer
                   },
                   {
                     title: "Bank-Level Security",
-                    description: "Your money and data are protected with enterprise-grade security measures.",
+                    description:
+                      "Your money and data are protected with enterprise-grade security measures.",
                     color: "from-orange-500 to-red-600",
                     accent: "border-orange-500",
                     bgAccent: "bg-orange-50 dark:bg-orange-900/20",
                     icon: Shield,
-                    position: "-bottom-6 left-1/2 -translate-x-1/2 translate-y-full", // Bottom - closer
+                    position:
+                      "-bottom-6 left-1/2 -translate-x-1/2 translate-y-full", // Bottom - closer
                   },
                   {
                     title: "Global Transfers",
-                    description: "Send money worldwide with the best exchange rates and lowest fees.",
+                    description:
+                      "Send money worldwide with the best exchange rates and lowest fees.",
                     color: "from-pink-500 to-rose-600",
                     accent: "border-pink-500",
                     bgAccent: "bg-pink-50 dark:bg-pink-900/20",
                     icon: Globe,
-                    position: "bottom-1/4 -left-16 -translate-x-full translate-y-1/2", // Bottom Left - closer
+                    position:
+                      "bottom-1/4 -left-16 -translate-x-full translate-y-1/2", // Bottom Left - closer
                   },
                   {
                     title: "Instant Processing",
-                    description: "Most transactions are completed within minutes, not days.",
+                    description:
+                      "Most transactions are completed within minutes, not days.",
                     color: "from-indigo-500 to-purple-600",
                     accent: "border-indigo-500",
                     bgAccent: "bg-indigo-50 dark:bg-indigo-900/20",
                     icon: Zap,
-                    position: "top-1/4 -left-16 -translate-x-full -translate-y-1/2", // Top Left - closer
+                    position:
+                      "top-1/4 -left-16 -translate-x-full -translate-y-1/2", // Top Left - closer
                   },
                   {
                     title: "Appointment Booking",
-                    description: "Schedule visa interviews and financial consultations with ease.",
+                    description:
+                      "Schedule visa interviews and financial consultations with ease.",
                     color: "from-teal-500 to-cyan-600",
                     accent: "border-teal-500",
                     bgAccent: "bg-teal-50 dark:bg-teal-900/20",
                     icon: Users,
                     comingSoon: true,
-                    position: "top-1/2 -right-20 translate-x-full -translate-y-1/2", // Mid Right - closer
+                    position:
+                      "top-1/2 -right-20 translate-x-full -translate-y-1/2", // Mid Right - closer
                   },
                 ].map((feature, index) => (
                   <motion.button
                     key={index}
                     onMouseEnter={() => setActiveFeature(index)}
                     onClick={() => setActiveFeature(index)}
-                    className={`absolute w-64 p-4 rounded-2xl transition-all duration-500 ${feature.position} ${
+                    className={`absolute w-64 p-4 rounded-2xl transition-all duration-500 ${
+                      feature.position
+                    } ${
                       activeFeature === index
                         ? `${feature.bgAccent} border-2 ${feature.accent} shadow-2xl scale-110 z-20`
                         : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg z-10"
                     }`}
                     whileHover={{
                       scale: activeFeature === index ? 1.1 : 1.05,
-                      y: -5
+                      y: -5,
                     }}
                     whileTap={{ scale: 0.95 }}
                     initial={{
                       opacity: 0,
                       scale: 0.8,
-                      rotate: index * (360 / 7)
+                      rotate: index * (360 / 7),
                     }}
                     whileInView={{
                       opacity: 1,
                       scale: 1,
-                      rotate: 0
+                      rotate: 0,
                     }}
                     transition={{
                       duration: 0.6,
                       delay: index * 0.1,
                       type: "spring",
-                      stiffness: 100
+                      stiffness: 100,
                     }}
                     viewport={{ once: true, amount: 0.1 }}
                   >
@@ -1250,12 +1419,12 @@ export default function CleanHomePage() {
                         className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-20 rounded-2xl`}
                         animate={{
                           scale: [1, 1.1, 1],
-                          opacity: [0.2, 0.4, 0.2]
+                          opacity: [0.2, 0.4, 0.2],
                         }}
                         transition={{
                           duration: 2,
                           repeat: Infinity,
-                          ease: "easeInOut"
+                          ease: "easeInOut",
                         }}
                       />
                     )}
@@ -1263,23 +1432,31 @@ export default function CleanHomePage() {
                     {/* Content */}
                     <div className="relative z-10">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                          activeFeature === index
-                            ? `bg-gradient-to-r ${feature.color} shadow-lg`
-                            : "bg-gray-100 dark:bg-gray-700"
-                        } transition-all duration-300`}>
-                          <feature.icon className={`w-5 h-5 ${
-                            activeFeature === index ? "text-white" : "text-gray-600 dark:text-gray-300"
-                          }`} />
+                        <div
+                          className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                            activeFeature === index
+                              ? `bg-gradient-to-r ${feature.color} shadow-lg`
+                              : "bg-gray-100 dark:bg-gray-700"
+                          } transition-all duration-300`}
+                        >
+                          <feature.icon
+                            className={`w-5 h-5 ${
+                              activeFeature === index
+                                ? "text-white"
+                                : "text-gray-600 dark:text-gray-300"
+                            }`}
+                          />
                         </div>
 
                         <div className="flex-1 text-left">
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className={`font-bold text-sm leading-tight ${
-                              activeFeature === index
-                                ? "text-gray-900 dark:text-white"
-                                : "text-gray-700 dark:text-gray-200"
-                            }`}>
+                            <h3
+                              className={`font-bold text-sm leading-tight ${
+                                activeFeature === index
+                                  ? "text-gray-900 dark:text-white"
+                                  : "text-gray-700 dark:text-gray-200"
+                              }`}
+                            >
                               {feature.title}
                             </h3>
                             {feature.comingSoon && (
@@ -1288,11 +1465,13 @@ export default function CleanHomePage() {
                               </Badge>
                             )}
                           </div>
-                          <p className={`text-xs leading-relaxed ${
-                            activeFeature === index
-                              ? "text-gray-600 dark:text-gray-300"
-                              : "text-gray-500 dark:text-gray-400"
-                          }`}>
+                          <p
+                            className={`text-xs leading-relaxed ${
+                              activeFeature === index
+                                ? "text-gray-600 dark:text-gray-300"
+                                : "text-gray-500 dark:text-gray-400"
+                            }`}
+                          >
                             {feature.description}
                           </p>
                         </div>
@@ -1301,18 +1480,22 @@ export default function CleanHomePage() {
 
                     {/* Connecting line to center */}
                     <motion.div
-                      className={`absolute w-0.5 h-8 bg-gradient-to-b ${feature.color} ${
+                      className={`absolute w-0.5 h-8 bg-gradient-to-b ${
+                        feature.color
+                      } ${
                         activeFeature === index ? "opacity-60" : "opacity-20"
                       }`}
                       style={{
                         top: "50%",
                         left: "50%",
                         transformOrigin: "center top",
-                        transform: `translateX(-50%) rotate(${index * (360 / 7) - 90}deg)`
+                        transform: `translateX(-50%) rotate(${
+                          index * (360 / 7) - 90
+                        }deg)`,
                       }}
                       animate={{
                         scaleY: activeFeature === index ? 1 : 0.5,
-                        opacity: activeFeature === index ? 0.6 : 0.2
+                        opacity: activeFeature === index ? 0.6 : 0.2,
                       }}
                       transition={{ duration: 0.3 }}
                     />
