@@ -22,10 +22,14 @@ import {
   CreditCard,
   GraduationCap,
   Sparkles,
+  Menu,
+  X,
+  ChevronDown,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Icons } from "@/components/ui/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -35,6 +39,10 @@ const fadeInUp = {
 
 export default function CleanHomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [activeFeature, setActiveFeature] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +51,38 @@ export default function CleanHomePage() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Cleanup dropdown timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout);
+      }
+    };
+  }, [dropdownTimeout]);
+
+  // Helper functions for dropdown behavior
+  const handleDropdownEnter = (dropdown: string) => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setOpenDropdown(dropdown);
+  };
+
+  const handleDropdownLeave = () => {
+    const timeout = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 150); // 150ms delay before closing
+    setDropdownTimeout(timeout);
+  };
+
+  const handleDropdownStay = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+  };
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -187,110 +227,296 @@ export default function CleanHomePage() {
         {/* Pattern Overlays */}
         {/* <div className="absolute inset-0 pattern-dots-overlay pointer-events-none"></div>
         <div className="absolute inset-0 pattern-waves pointer-events-none"></div> */}
-        {/* Animated Oval Navigation */}
+        {/* Enhanced Responsive Navigation */}
         <motion.nav
           role="navigation"
           aria-label="Main navigation"
           className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
             isScrolled
-              ? "glass-nav rounded-full px-6 py-3 mx-4 max-w-sm shadow-2xl"
-              : "bg-transparent rounded-full px-6 py-4 max-w-7xl w-full"
+              ? "glass-nav rounded-full px-6 py-3 mx-4 max-w-6xl shadow-2xl"
+              : "bg-transparent rounded-2xl px-6 py-4 max-w-7xl w-full"
           }`}
           initial={{ opacity: 0, y: -20, scale: 0.9 }}
           animate={{
             opacity: 1,
             y: 0,
             scale: 1,
-            borderRadius: isScrolled ? "9999px" : "24px",
+            borderRadius: isScrolled ? "9999px" : "16px",
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          whileHover={isScrolled ? { scale: 1.05 } : {}}
         >
-          <div
-            className={`flex items-center justify-between transition-all duration-500 ${
-              isScrolled ? "gap-4" : "gap-8"
-            }`}
-          >
+          <div className="flex items-center justify-between w-full">
             {/* Logo */}
             <motion.div
-              className="flex items-center cursor-pointer"
-              animate={{
-                scale: isScrolled ? 0.9 : 1,
-              }}
+              className="flex items-center cursor-pointer z-10"
+              animate={{ scale: isScrolled ? 0.9 : 1 }}
               transition={{ duration: 0.3 }}
             >
-              <div
-                className=" flex relative w-12 h-12 items-center justify-center"
-                aria-hidden="true"
-              >
+              <div className="flex relative w-10 h-10 items-center justify-center mr-2">
                 <Image
                   src={"/assets/logo/adaptive-icon.png"}
                   fill
-                  alt="logo"
-                  className=" text-white"
+                  alt="BPay logo"
+                  className="object-contain"
                 />
               </div>
-              <span
-                className={`font-bold transition-all duration-300 ${
-                  isScrolled ? "text-lg" : "text-xl"
-                }`}
-              >
+              <span className={`font-bold transition-all duration-300 ${isScrolled ? "text-lg" : "text-xl"}`}>
                 BPay
               </span>
             </motion.div>
 
             {/* Desktop Navigation */}
             <motion.div
-              className={`items-center space-x-6 ${
-                isScrolled ? "hidden" : "hidden md:flex"
-              }`}
-              role="menubar"
+              className={`items-center space-x-8 ${isScrolled ? "hidden" : "hidden lg:flex"}`}
               animate={{ opacity: isScrolled ? 0 : 1 }}
               transition={{ duration: 0.3 }}
             >
-              <a
-                href="#features"
+              {/* Services Dropdown */}
+              <div className="relative group">
+                <button
+                  className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  onMouseEnter={() => handleDropdownEnter('services')}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  Services
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                {openDropdown === 'services' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 glass-card rounded-xl shadow-lg py-2"
+                    onMouseEnter={handleDropdownStay}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <Link href="/student-loans" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <GraduationCap className="w-5 h-5 text-purple-500" />
+                      <div>
+                        <div className="font-medium">Student Loans</div>
+                        <div className="text-sm text-gray-500">Coming Soon</div>
+                      </div>
+                    </Link>
+                    <Link href="#features" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <DollarSign className="w-5 h-5 text-green-500" />
+                      <div>
+                        <div className="font-medium">SEVIS Payments</div>
+                        <div className="text-sm text-gray-500">Instant & secure</div>
+                      </div>
+                    </Link>
+                    <Link href="#features" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <CreditCard className="w-5 h-5 text-blue-500" />
+                      <div>
+                        <div className="font-medium">Credit Building</div>
+                        <div className="text-sm text-gray-500">Build US credit</div>
+                      </div>
+                    </Link>
+                    <Link href="/appointments" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <Users className="w-5 h-5 text-teal-500" />
+                      <div>
+                        <div className="font-medium">Appointments</div>
+                        <div className="text-sm text-gray-500">Coming Soon</div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Resources Dropdown */}
+              <div className="relative group">
+                <button
+                  className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  onMouseEnter={() => handleDropdownEnter('resources')}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  Resources
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                {openDropdown === 'resources' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 glass-card rounded-xl shadow-lg py-2"
+                    onMouseEnter={handleDropdownStay}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <Link href="/blog" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-blue-500 rounded text-white flex items-center justify-center text-xs">📖</div>
+                      <div>
+                        <div className="font-medium">Blog</div>
+                        <div className="text-sm text-gray-500">Financial tips & guides</div>
+                      </div>
+                    </Link>
+                    <Link href="/help" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded text-white flex items-center justify-center text-xs">❓</div>
+                      <div>
+                        <div className="font-medium">Help Center</div>
+                        <div className="text-sm text-gray-500">Get support</div>
+                      </div>
+                    </Link>
+                    <Link href="/faq" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded text-white flex items-center justify-center text-xs">💬</div>
+                      <div>
+                        <div className="font-medium">FAQ</div>
+                        <div className="text-sm text-gray-500">Quick answers</div>
+                      </div>
+                    </Link>
+                    <Link href="/community" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-pink-500 to-purple-500 rounded text-white flex items-center justify-center text-xs">👥</div>
+                      <div>
+                        <div className="font-medium">Community</div>
+                        <div className="text-sm text-gray-500">Connect with students</div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Company Dropdown */}
+              <div className="relative group">
+                <button
+                  className="flex items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                  onMouseEnter={() => handleDropdownEnter('company')}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  Company
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                {openDropdown === 'company' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-56 glass-card rounded-xl shadow-lg py-2"
+                    onMouseEnter={handleDropdownStay}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <Link href="/mission" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded text-white flex items-center justify-center text-xs">🎯</div>
+                      <div className="font-medium">Our Mission</div>
+                    </Link>
+                    <Link href="/security" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-500 rounded text-white flex items-center justify-center text-xs">🔒</div>
+                      <div className="font-medium">Security</div>
+                    </Link>
+                    <Link href="/careers" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                      <div className="w-5 h-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded text-white flex items-center justify-center text-xs">💼</div>
+                      <div className="font-medium">Careers</div>
+                    </Link>
+                  </motion.div>
+                )}
+              </div>
+
+              <Link
+                href="/live-chat"
                 className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                role="menuitem"
               >
-                Features
-              </a>
-              <a
-                href="#services"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                role="menuitem"
-              >
-                Services
-              </a>
-              <a
-                href="#about"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                role="menuitem"
-              >
-                About
-              </a>
+                Support
+              </Link>
             </motion.div>
 
-            {/* Actions */}
+            {/* Desktop Actions */}
             <motion.div
-              className="flex items-center space-x-2 sm:space-x-4"
-              animate={{
-                scale: isScrolled ? 0.9 : 1,
-              }}
+              className="hidden md:flex items-center space-x-3"
+              animate={{ scale: isScrolled ? 0.9 : 1 }}
               transition={{ duration: 0.3 }}
             >
               <SafeThemeToggle />
-
               <Button
-                className={`bg-gradient-to-r text-white from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 dark:neon-glow-purple dark:glass-button transition-all duration-300 ${
+                variant="outline"
+                className={`transition-all duration-300 ${isScrolled ? "px-3 py-2 text-sm" : "px-4 py-2"}`}
+              >
+                Sign In
+              </Button>
+              <Button
+                className={`bg-gradient-to-r text-white from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ${
                   isScrolled ? "px-4 py-2 text-sm" : "px-6 py-3"
                 }`}
-                aria-label="Get started with BPay"
               >
                 {isScrolled ? "Get App" : "Get Started"}
               </Button>
             </motion.div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <SafeThemeToggle />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700"
+            >
+              <div className="space-y-1">
+                {/* Mobile Services */}
+                <div className="py-2">
+                  <div className="font-medium text-gray-900 dark:text-white mb-2">Services</div>
+                  <div className="pl-4 space-y-2">
+                    <Link href="/student-loans" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                      <GraduationCap className="w-4 h-4" />
+                      Student Loans <Badge className="text-xs bg-amber-100 text-amber-800">Soon</Badge>
+                    </Link>
+                    <Link href="#features" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                      <DollarSign className="w-4 h-4" />
+                      SEVIS Payments
+                    </Link>
+                    <Link href="#features" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                      <CreditCard className="w-4 h-4" />
+                      Credit Building
+                    </Link>
+                    <Link href="/appointments" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">
+                      <Users className="w-4 h-4" />
+                      Appointments <Badge className="text-xs bg-amber-100 text-amber-800">Soon</Badge>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Mobile Resources */}
+                <div className="py-2">
+                  <div className="font-medium text-gray-900 dark:text-white mb-2">Resources</div>
+                  <div className="pl-4 space-y-2">
+                    <Link href="/blog" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Blog</Link>
+                    <Link href="/help" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Help Center</Link>
+                    <Link href="/faq" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">FAQ</Link>
+                    <Link href="/community" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Community</Link>
+                  </div>
+                </div>
+
+                {/* Mobile Company */}
+                <div className="py-2">
+                  <div className="font-medium text-gray-900 dark:text-white mb-2">Company</div>
+                  <div className="pl-4 space-y-2">
+                    <Link href="/mission" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Our Mission</Link>
+                    <Link href="/security" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Security</Link>
+                    <Link href="/careers" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1">Careers</Link>
+                  </div>
+                </div>
+
+                <Link href="/live-chat" className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2">Support</Link>
+
+                {/* Mobile Actions */}
+                <div className="pt-4 space-y-3">
+                  <Button variant="outline" className="w-full">Sign In</Button>
+                  <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white">
+                    Get Started
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </motion.nav>
 
         {/* Hero Section */}
@@ -651,7 +877,7 @@ export default function CleanHomePage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.3 }}
                     className="text-center group"
                   >
                     <div className="relative">
@@ -727,8 +953,8 @@ export default function CleanHomePage() {
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="relative"
                 >
                   <Card className="h-full p-6 bg-white dark:bg-gray-800 dark:glass-card border-0 shadow-lg hover:shadow-xl dark:hover:neon-glow-blue transition-all duration-300">
@@ -778,8 +1004,8 @@ export default function CleanHomePage() {
               className="text-center mt-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 Join thousands of successful students
@@ -792,105 +1018,323 @@ export default function CleanHomePage() {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Interactive Features Section */}
         <section
           id="features"
-          className="relative py-20 light:pattern-elegant-light dark:pattern-elegant-dark"
-          // className="relative py-20 light:pattern-elegant-light dark:pattern-elegant-dark"
+          className="relative py-20 bg-gray-50 dark:bg-gray-900"
           aria-labelledby="features-title"
         >
-          {/* Subtle Wave Pattern */}
-          <div className="absolute inset-0 pattern-waves  opacity-30 pointer-events-none"></div>
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="absolute inset-0 pattern-dots-overlay opacity-10 pointer-events-none"></div>
+
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
             <header className="text-center mb-16">
-              <h2
+              <motion.h2
                 id="features-title"
                 className="text-3xl md:text-5xl font-bold mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 Everything you need in one app
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Comprehensive financial solutions designed specifically for
-                international students
-              </p>
+              </motion.h2>
+              <motion.p
+                className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                Comprehensive financial solutions designed specifically for international students
+              </motion.p>
             </header>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: DollarSign,
-                  title: "SEVIS Fee Payments",
-                  description:
-                    "Pay your I-901 SEVIS fees instantly with zero hassle and immediate confirmation.",
-                  color: "from-green-500 to-emerald-600",
-                },
-                {
-                  icon: CreditCard,
-                  title: "Build Credit Score",
-                  description:
-                    "Establish your US credit history with everyday spending and smart financial tools.",
-                  color: "from-blue-500 to-cyan-600",
-                },
-                {
-                  icon: GraduationCap,
-                  title: "Student Loans",
-                  description:
-                    "Access flexible loan options with competitive rates designed for students.",
-                  color: "from-purple-500 to-violet-600",
-                },
-                {
-                  icon: Shield,
-                  title: "Bank-Level Security",
-                  description:
-                    "Your money and data are protected with enterprise-grade security measures.",
-                  color: "from-orange-500 to-red-600",
-                },
-                {
-                  icon: Globe,
-                  title: "Global Transfers",
-                  description:
-                    "Send money worldwide with the best exchange rates and lowest fees.",
-                  color: "from-pink-500 to-rose-600",
-                },
-                {
-                  icon: Zap,
-                  title: "Instant Processing",
-                  description:
-                    "Most transactions are completed within minutes, not days.",
-                  color: "from-indigo-500 to-purple-600",
-                },
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                >
-                  <Card className="h-full bg-purple-100/60 dark:bg-purple-900/20 border-gray-200 dark:border-gray-800 dark:glass-card hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl dark:hover:neon-glow-purple relative overflow-hidden group">
-                    {/* Slanted accent overlay */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-500/5 to-blue-500/5 transform rotate-45 translate-x-8 -translate-y-8 group-hover:scale-110 transition-transform duration-300"></div>
+            <motion.div
+              className="relative max-w-6xl mx-auto px-8 py-16"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              {/* Central Image */}
+              <div className="flex justify-center items-center relative">
+                <Card className="overflow-hidden shadow-2xl border-0 bg-white dark:bg-gray-800 w-80 h-80 lg:w-96 lg:h-96 relative z-10">
+                  <div className="relative w-full h-full">
+                    <motion.div
+                      key={activeFeature}
+                      className="absolute inset-0"
+                      initial={{ opacity: 0, scale: 1.1, rotate: 5 }}
+                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      <Image
+                        src={[
+                          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
+                          "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
+                          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
+                          "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
+                          "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
+                          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+                          "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&crop=center",
+                        ][activeFeature]}
+                        alt={[
+                          "SEVIS Fee Payments",
+                          "Build Credit Score",
+                          "Student Loans",
+                          "Bank-Level Security",
+                          "Global Transfers",
+                          "Instant Processing",
+                          "Appointment Booking",
+                        ][activeFeature]}
+                        fill
+                        className="object-cover rounded-xl"
+                      />
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl"></div>
+                    </motion.div>
 
-                    <CardContent className="p-8 relative z-10">
-                      <div
-                        className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 relative`}
+                    {/* Feature title overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <motion.h3
+                        key={`title-${activeFeature}`}
+                        className="text-xl lg:text-2xl font-bold text-white mb-2"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        <feature.icon className="w-6 h-6 text-white" />
-                        {/* Small slanted accent */}
-                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-white/20 transform rotate-45"></div>
+                        {[
+                          "SEVIS Fee Payments",
+                          "Build Credit Score",
+                          "Student Loans",
+                          "Bank-Level Security",
+                          "Global Transfers",
+                          "Instant Processing",
+                          "Appointment Booking",
+                        ][activeFeature]}
+                      </motion.h3>
+                      <motion.div
+                        key={`bar-${activeFeature}`}
+                        className={`h-1 w-16 bg-gradient-to-r ${[
+                          "from-green-500 to-emerald-600",
+                          "from-blue-500 to-cyan-600",
+                          "from-purple-500 to-violet-600",
+                          "from-orange-500 to-red-600",
+                          "from-pink-500 to-rose-600",
+                          "from-indigo-500 to-purple-600",
+                          "from-teal-500 to-cyan-600",
+                        ][activeFeature]} rounded-full`}
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                      />
+                    </div>
+
+                    {/* Floating ring animation */}
+                    <motion.div
+                      className="absolute -inset-4 border-2 border-purple-500/30 rounded-xl"
+                      animate={{
+                        rotate: 360,
+                        scale: [1, 1.05, 1]
+                      }}
+                      transition={{
+                        rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                        scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                      }}
+                    />
+                  </div>
+                </Card>
+
+                {/* Features arranged in circular/oval pattern */}
+                {[
+                  {
+                    title: "SEVIS Fee Payments",
+                    description: "Pay your I-901 SEVIS fees instantly with zero hassle and immediate confirmation.",
+                    color: "from-green-500 to-emerald-600",
+                    accent: "border-green-500",
+                    bgAccent: "bg-green-50 dark:bg-green-900/20",
+                    icon: DollarSign,
+                    position: "top-6 left-1/2 -translate-x-1/2 -translate-y-full", // Top - closer
+                  },
+                  {
+                    title: "Build Credit Score",
+                    description: "Establish your US credit history with everyday spending and smart financial tools.",
+                    color: "from-blue-500 to-cyan-600",
+                    accent: "border-blue-500",
+                    bgAccent: "bg-blue-50 dark:bg-blue-900/20",
+                    icon: CreditCard,
+                    position: "top-1/4 -right-16 translate-x-full -translate-y-1/2", // Top Right - closer
+                  },
+                  {
+                    title: "Student Loans",
+                    description: "Access flexible loan options with competitive rates designed for students.",
+                    color: "from-purple-500 to-violet-600",
+                    accent: "border-purple-500",
+                    bgAccent: "bg-purple-50 dark:bg-purple-900/20",
+                    icon: GraduationCap,
+                    comingSoon: true,
+                    position: "bottom-1/4 -right-16 translate-x-full translate-y-1/2", // Bottom Right - closer
+                  },
+                  {
+                    title: "Bank-Level Security",
+                    description: "Your money and data are protected with enterprise-grade security measures.",
+                    color: "from-orange-500 to-red-600",
+                    accent: "border-orange-500",
+                    bgAccent: "bg-orange-50 dark:bg-orange-900/20",
+                    icon: Shield,
+                    position: "-bottom-6 left-1/2 -translate-x-1/2 translate-y-full", // Bottom - closer
+                  },
+                  {
+                    title: "Global Transfers",
+                    description: "Send money worldwide with the best exchange rates and lowest fees.",
+                    color: "from-pink-500 to-rose-600",
+                    accent: "border-pink-500",
+                    bgAccent: "bg-pink-50 dark:bg-pink-900/20",
+                    icon: Globe,
+                    position: "bottom-1/4 -left-16 -translate-x-full translate-y-1/2", // Bottom Left - closer
+                  },
+                  {
+                    title: "Instant Processing",
+                    description: "Most transactions are completed within minutes, not days.",
+                    color: "from-indigo-500 to-purple-600",
+                    accent: "border-indigo-500",
+                    bgAccent: "bg-indigo-50 dark:bg-indigo-900/20",
+                    icon: Zap,
+                    position: "top-1/4 -left-16 -translate-x-full -translate-y-1/2", // Top Left - closer
+                  },
+                  {
+                    title: "Appointment Booking",
+                    description: "Schedule visa interviews and financial consultations with ease.",
+                    color: "from-teal-500 to-cyan-600",
+                    accent: "border-teal-500",
+                    bgAccent: "bg-teal-50 dark:bg-teal-900/20",
+                    icon: Users,
+                    comingSoon: true,
+                    position: "top-1/2 -right-20 translate-x-full -translate-y-1/2", // Mid Right - closer
+                  },
+                ].map((feature, index) => (
+                  <motion.button
+                    key={index}
+                    onMouseEnter={() => setActiveFeature(index)}
+                    onClick={() => setActiveFeature(index)}
+                    className={`absolute w-64 p-4 rounded-2xl transition-all duration-500 ${feature.position} ${
+                      activeFeature === index
+                        ? `${feature.bgAccent} border-2 ${feature.accent} shadow-2xl scale-110 z-20`
+                        : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg z-10"
+                    }`}
+                    whileHover={{
+                      scale: activeFeature === index ? 1.1 : 1.05,
+                      y: -5
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.8,
+                      rotate: index * (360 / 7)
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      scale: 1,
+                      rotate: 0
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    viewport={{ once: true, amount: 0.1 }}
+                  >
+                    {/* Active pulse effect */}
+                    {activeFeature === index && (
+                      <motion.div
+                        className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-20 rounded-2xl`}
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0.2, 0.4, 0.2]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    )}
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          activeFeature === index
+                            ? `bg-gradient-to-r ${feature.color} shadow-lg`
+                            : "bg-gray-100 dark:bg-gray-700"
+                        } transition-all duration-300`}>
+                          <feature.icon className={`w-5 h-5 ${
+                            activeFeature === index ? "text-white" : "text-gray-600 dark:text-gray-300"
+                          }`} />
+                        </div>
+
+                        <div className="flex-1 text-left">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className={`font-bold text-sm leading-tight ${
+                              activeFeature === index
+                                ? "text-gray-900 dark:text-white"
+                                : "text-gray-700 dark:text-gray-200"
+                            }`}>
+                              {feature.title}
+                            </h3>
+                            {feature.comingSoon && (
+                              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1">
+                                Soon
+                              </Badge>
+                            )}
+                          </div>
+                          <p className={`text-xs leading-relaxed ${
+                            activeFeature === index
+                              ? "text-gray-600 dark:text-gray-300"
+                              : "text-gray-500 dark:text-gray-400"
+                          }`}>
+                            {feature.description}
+                          </p>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                    </div>
+
+                    {/* Connecting line to center */}
+                    <motion.div
+                      className={`absolute w-0.5 h-8 bg-gradient-to-b ${feature.color} ${
+                        activeFeature === index ? "opacity-60" : "opacity-20"
+                      }`}
+                      style={{
+                        top: "50%",
+                        left: "50%",
+                        transformOrigin: "center top",
+                        transform: `translateX(-50%) rotate(${index * (360 / 7) - 90}deg)`
+                      }}
+                      animate={{
+                        scaleY: activeFeature === index ? 1 : 0.5,
+                        opacity: activeFeature === index ? 0.6 : 0.2
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.button>
+                ))}
+
+                {/* Feature indicators */}
+                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-2">
+                  {Array.from({ length: 7 }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveFeature(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        activeFeature === index
+                          ? "bg-purple-500 w-8"
+                          : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -938,7 +1382,7 @@ export default function CleanHomePage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               Ready to take control of your finances?
             </motion.h2>
@@ -947,7 +1391,7 @@ export default function CleanHomePage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               Join thousands of international students who trust BPay for their
               financial needs.
@@ -957,7 +1401,7 @@ export default function CleanHomePage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <Button
                 size="lg"
@@ -1008,7 +1452,7 @@ export default function CleanHomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
               >
                 <div className="flex items-center space-x-3 mb-6 relative">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center relative shadow-lg">
@@ -1052,7 +1496,7 @@ export default function CleanHomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
               >
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 relative">
                   Services
@@ -1060,22 +1504,22 @@ export default function CleanHomePage() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "SEVIS Fee Payment",
-                    "Credit Building",
-                    "Student Loans",
-                    "Financial Management",
-                    "Money Transfer",
-                    "Budget Planning",
+                    { name: "SEVIS Fee Payment", link: "#features" },
+                    { name: "Credit Building", link: "#features" },
+                    { name: "Student Loans", link: "/student-loans" },
+                    { name: "Financial Management", link: "#features" },
+                    { name: "Money Transfer", link: "#features" },
+                    { name: "Appointment Booking", link: "/appointments" },
                   ].map((service, index) => (
-                    <li key={service}>
+                    <li key={service.name}>
                       <motion.a
-                        href="#"
+                        href={service.link}
                         className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group flex items-center"
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
                       >
                         <span className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3 transform rotate-45"></span>
-                        {service}
+                        {service.name}
                       </motion.a>
                     </li>
                   ))}
@@ -1087,7 +1531,7 @@ export default function CleanHomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
               >
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 relative">
                   Company
@@ -1095,22 +1539,22 @@ export default function CleanHomePage() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "About Us",
-                    "Our Mission",
-                    "Security",
-                    "Careers",
-                    "Blog",
-                    "Press Kit",
+                    { name: "About Us", link: "/mission" },
+                    { name: "Our Mission", link: "/mission" },
+                    { name: "Security", link: "/security" },
+                    { name: "Careers", link: "/careers" },
+                    { name: "Blog", link: "/blog" },
+                    { name: "Press Kit", link: "/blog" },
                   ].map((item, index) => (
-                    <li key={item}>
+                    <li key={item.name}>
                       <motion.a
-                        href="#"
+                        href={item.link}
                         className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group flex items-center"
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
                       >
                         <span className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3 transform rotate-45"></span>
-                        {item}
+                        {item.name}
                       </motion.a>
                     </li>
                   ))}
@@ -1122,7 +1566,7 @@ export default function CleanHomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
               >
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 relative">
                   Support
@@ -1131,22 +1575,22 @@ export default function CleanHomePage() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    "Help Center",
-                    "Contact Us",
-                    "Live Chat",
-                    "Documentation",
-                    "FAQ",
-                    "Community",
+                    { name: "Help Center", link: "/help" },
+                    { name: "Contact Us", link: "/help" },
+                    { name: "Live Chat", link: "/live-chat" },
+                    { name: "Documentation", link: "/help" },
+                    { name: "FAQ", link: "/faq" },
+                    { name: "Community", link: "/community" },
                   ].map((item, index) => (
                     <motion.a
-                      key={item}
-                      href="#"
+                      key={item.name}
+                      href={item.link}
                       className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group flex items-center"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
                       <span className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3 transform rotate-45"></span>
-                      {item}
+                      {item.name}
                     </motion.a>
                   ))}
                 </div>
@@ -1217,7 +1661,7 @@ export default function CleanHomePage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <div className="max-w-md mx-auto text-center lg:text-left lg:max-w-none lg:flex lg:items-center lg:justify-between">
                 <div className="mb-6 lg:mb-0">
