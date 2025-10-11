@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown, Plus, Minus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 
 interface FAQItem {
   question: string;
@@ -14,61 +14,75 @@ interface FAQItem {
 const faqData: FAQItem[] = [
   {
     question: "How do I pay my SEVIS I-901 fee through BPay?",
-    answer: "Simply download the BPay app, create your account, and navigate to the SEVIS payment section. Enter your SEVIS ID and select your payment method. The process takes just a few minutes and you'll receive instant confirmation.",
-    category: "Payments"
+    answer:
+      "Simply download the BPay app, create your account, and navigate to the SEVIS payment section. Enter your SEVIS ID and select your payment method. The process takes just a few minutes and you'll receive instant confirmation.",
+    category: "Payments",
   },
   {
     question: "Is my financial information secure with BPay?",
-    answer: "Absolutely. We use bank-level 256-bit encryption, are PCI DSS compliant, and follow strict security protocols. Your data is protected with the same standards used by major financial institutions.",
-    category: "Security"
+    answer:
+      "Absolutely. We use bank-level 256-bit encryption, are PCI DSS compliant, and follow strict security protocols. Your data is protected with the same standards used by major financial institutions.",
+    category: "Security",
   },
   {
     question: "What payment methods are accepted?",
-    answer: "BPay accepts all major credit cards (Visa, Mastercard, American Express), bank transfers, and mobile money options. We support both GHS and USD currencies for your convenience.",
-    category: "Payments"
+    answer:
+      "BPay accepts all major credit cards (Visa, Mastercard, American Express), bank transfers, and mobile money options. We support both GHS and USD currencies for your convenience.",
+    category: "Payments",
   },
   {
     question: "How long does it take for payments to be processed?",
-    answer: "Most payments are processed instantly or within 2 hours. SEVIS fee payments are confirmed immediately, while bank transfers may take 1-2 business days depending on your bank.",
-    category: "Payments"
+    answer:
+      "Most payments are processed instantly or within 2 hours. SEVIS fee payments are confirmed immediately, while bank transfers may take 1-2 business days depending on your bank.",
+    category: "Payments",
   },
   {
     question: "Can I track my visa interview appointments?",
-    answer: "Yes! BPay includes a comprehensive interview scheduling system with automated reminders, calendar integration, and real-time updates on your appointment status.",
-    category: "Services"
+    answer:
+      "Yes! BPay includes a comprehensive interview scheduling system with automated reminders, calendar integration, and real-time updates on your appointment status.",
+    category: "Services",
   },
   {
     question: "How do I apply for student loans through BPay?",
-    answer: "Access the Banking & Credit section in the app, complete your profile, upload required documents, and submit your application. Our streamlined process provides quick approval decisions.",
-    category: "Banking"
+    answer:
+      "Access the Banking & Credit section in the app, complete your profile, upload required documents, and submit your application. Our streamlined process provides quick approval decisions.",
+    category: "Banking",
   },
   {
     question: "What documents can I store in BPay?",
-    answer: "You can securely store passports, transcripts, financial statements, I-20 forms, visa documents, and any other important student documents with end-to-end encryption.",
-    category: "Services"
+    answer:
+      "You can securely store passports, transcripts, financial statements, I-20 forms, visa documents, and any other important student documents with end-to-end encryption.",
+    category: "Services",
   },
   {
     question: "Is BPay available in my country?",
-    answer: "BPay is available globally for international students. However, some specific services may vary by country. Contact our support team to confirm availability in your region.",
-    category: "General"
-  }
+    answer:
+      "BPay is available globally for international students. However, some specific services may vary by country. Contact our support team to confirm availability in your region.",
+    category: "General",
+  },
 ];
 
-const categories = ["All", "Payments", "Security", "Banking", "Services", "General"];
+const categories = [
+  "All",
+  "Payments",
+  "Security",
+  "Banking",
+  "Services",
+  "General",
+];
 
 export function FAQSection() {
   const [openItems, setOpenItems] = useState<number[]>([]);
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredFAQs = activeCategory === "All"
-    ? faqData
-    : faqData.filter(faq => faq.category === activeCategory);
+  const filteredFAQs =
+    activeCategory === "All"
+      ? faqData
+      : faqData.filter((faq) => faq.category === activeCategory);
 
   const toggleItem = (index: number) => {
-    setOpenItems(prev =>
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+    setOpenItems((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
@@ -88,9 +102,10 @@ export function FAQSection() {
             onClick={() => setActiveCategory(category)}
             className={`
               px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
-              ${activeCategory === category
-                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
+              ${
+                activeCategory === category
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
+                  : "bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white"
               }
             `}
           >

@@ -11,29 +11,29 @@ const trustStats = [
     label: "Students Served",
     icon: Users,
     description: "Happy international students on BPay",
-    gradient: "from-blue-400 to-cyan-600"
+    gradient: "from-blue-400 to-cyan-600",
   },
   {
     number: "1,500+",
     label: "5-Star Reviews",
     icon: Star,
     description: "5-star review for speed and reliability",
-    gradient: "from-yellow-400 to-orange-600"
+    gradient: "from-yellow-400 to-orange-600",
   },
   {
     number: "2H",
     label: "Processing Time",
     icon: Clock,
     description: "Average payment processing time on BPay",
-    gradient: "from-green-400 to-emerald-600"
+    gradient: "from-green-400 to-emerald-600",
   },
   {
     number: "99.9%",
     label: "Uptime",
     icon: Shield,
     description: "Reliable service you can count on",
-    gradient: "from-purple-400 to-violet-600"
-  }
+    gradient: "from-purple-400 to-violet-600",
+  },
 ];
 
 const backedBy = [
@@ -42,14 +42,22 @@ const backedBy = [
   { name: "Stripe", logo: "💳" },
   { name: "Paystack", logo: "💰" },
   { name: "Western Union", logo: "🌍" },
-  { name: "Visa", logo: "💎" }
+  { name: "Visa", logo: "💎" },
 ];
 
 const complianceLogos = [
-  { name: "PCI DSS", icon: Shield, description: "Payment Card Industry Compliant" },
-  { name: "SOC 2", icon: Award, description: "Security & Availability Certified" },
+  {
+    name: "PCI DSS",
+    icon: Shield,
+    description: "Payment Card Industry Compliant",
+  },
+  {
+    name: "SOC 2",
+    icon: Award,
+    description: "Security & Availability Certified",
+  },
   { name: "GDPR", icon: Shield, description: "Data Protection Compliant" },
-  { name: "256-bit SSL", icon: Shield, description: "Bank-Level Encryption" }
+  { name: "256-bit SSL", icon: Shield, description: "Bank-Level Encryption" },
 ];
 
 export function TrustIndicators() {
@@ -68,7 +76,9 @@ export function TrustIndicators() {
               <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
                 Latest
               </Badge>
-              <span className="text-white">BPay partners with major universities for seamless payments</span>
+              <span className="text-white">
+                BPay partners with major universities for seamless payments
+              </span>
               <TrendingUp className="w-4 h-4 text-green-400" />
             </div>
           </CardContent>
@@ -87,10 +97,12 @@ export function TrustIndicators() {
           >
             <Card className="glass-effect border-white/10 hover:border-purple-500/30 transition-all duration-300 h-full group-hover:scale-105">
               <CardContent className="p-6 text-center space-y-4">
-                <div className={`
+                <div
+                  className={`
                   w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r ${stat.gradient}
                   flex items-center justify-center group-hover:scale-110 transition-transform duration-300
-                `}>
+                `}
+                >
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
 
@@ -122,14 +134,16 @@ export function TrustIndicators() {
         <div>
           <p className="text-gray-400 mb-4">Backed by</p>
           <div className="flex flex-wrap justify-center items-center gap-8">
-            {backedBy.map((investor, index) => (
+            {backedBy.map((investor, _index) => (
               <motion.div
                 key={investor.name}
                 className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity duration-300"
                 whileHover={{ scale: 1.1 }}
               >
                 <span className="text-2xl">{investor.logo}</span>
-                <span className="text-gray-300 font-medium">{investor.name}</span>
+                <span className="text-gray-300 font-medium">
+                  {investor.name}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -145,8 +159,12 @@ export function TrustIndicators() {
         className="space-y-8"
       >
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-white mb-2">Safe, Secure, & Compliant</h3>
-          <p className="text-gray-400">Bank-level security and compliance standards</p>
+          <h3 className="text-2xl font-bold text-white mb-2">
+            Safe, Secure, & Compliant
+          </h3>
+          <p className="text-gray-400">
+            Bank-level security and compliance standards
+          </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -194,13 +212,17 @@ export function TrustIndicators() {
               whileHover={{ scale: 1.1, zIndex: 10 }}
               style={{ zIndex: 5 - i }}
             >
-              {['🎓', '👨‍🎓', '👩‍🔬', '👨‍💼', '👩‍🎓'][i]}
+              {["🎓", "👨‍🎓", "👩‍🔬", "👨‍💼", "👩‍🎓"][i]}
             </motion.div>
           ))}
         </div>
         <div className="text-left">
-          <div className="text-white font-semibold">Trusted by 10K+ Students</div>
-          <div className="text-gray-400 text-sm">Join thousands of successful students</div>
+          <div className="text-white font-semibold">
+            Trusted by 10K+ Students
+          </div>
+          <div className="text-gray-400 text-sm">
+            Join thousands of successful students
+          </div>
         </div>
       </motion.div>
     </div>

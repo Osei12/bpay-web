@@ -1,7 +1,13 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useRef } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -16,7 +22,7 @@ export function Reveal({
   direction = "up",
   delay = 0,
   duration = 0.8,
-  className = ""
+  className = "",
 }: RevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -25,7 +31,7 @@ export function Reveal({
     up: { y: 60, x: 0 },
     down: { y: -60, x: 0 },
     left: { y: 0, x: 60 },
-    right: { y: 0, x: -60 }
+    right: { y: 0, x: -60 },
   };
 
   return (
@@ -34,22 +40,26 @@ export function Reveal({
       initial={{
         opacity: 0,
         ...directions[direction],
-        scale: 0.8
+        scale: 0.8,
       }}
-      animate={isInView ? {
-        opacity: 1,
-        x: 0,
-        y: 0,
-        scale: 1
-      } : {
-        opacity: 0,
-        ...directions[direction],
-        scale: 0.8
-      }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              scale: 1,
+            }
+          : {
+              opacity: 0,
+              ...directions[direction],
+              scale: 0.8,
+            }
+      }
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className={className}
     >
@@ -61,7 +71,7 @@ export function Reveal({
 export function StaggeredReveal({
   children,
   staggerDelay = 0.1,
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode[];
   staggerDelay?: number;
@@ -80,7 +90,7 @@ export function StaggeredReveal({
           transition={{
             duration: 0.6,
             delay: index * staggerDelay,
-            ease: [0.25, 0.46, 0.45, 0.94]
+            ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
           {child}
@@ -94,7 +104,7 @@ export function TypewriterText({
   text,
   delay = 0,
   speed = 0.05,
-  className = ""
+  className = "",
 }: {
   text: string;
   delay?: number;
@@ -119,7 +129,7 @@ export function TypewriterText({
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{
             delay: delay + index * speed,
-            duration: 0.1
+            duration: 0.1,
           }}
         >
           {char}
@@ -129,13 +139,21 @@ export function TypewriterText({
   );
 }
 
+interface RevealProps {
+  children: React.ReactNode;
+  direction?: "up" | "down" | "left" | "right";
+  delay?: number;
+  duration?: number;
+  className?: string;
+}
+
 export function CounterAnimation({
   value,
   duration = 2,
   delay = 0,
   suffix = "",
   prefix = "",
-  className = ""
+  className = "",
 }: {
   value: number;
   duration?: number;
@@ -146,6 +164,22 @@ export function CounterAnimation({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const count = useMotionValue(0);
+  const rounded = useTransform(
+    count,
+    (latest) => `${prefix}${Math.round(latest)}${suffix}`
+  );
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, value, {
+        duration,
+        delay: delay + 0.5,
+        ease: "easeOut",
+      });
+      return controls.stop;
+    }
+  }, [isInView, value, duration, delay, count]);
 
   return (
     <motion.div
@@ -155,17 +189,7 @@ export function CounterAnimation({
       transition={{ delay, duration: 0.5 }}
       className={className}
     >
-      <motion.span
-        initial={{ textContent: "0" }}
-        animate={isInView ? { textContent: value.toString() } : { textContent: "0" }}
-        transition={{
-          delay: delay + 0.5,
-          duration,
-          ease: "easeOut"
-        }}
-      >
-        {prefix}0{suffix}
-      </motion.span>
+      <motion.span>{rounded}</motion.span>
     </motion.div>
   );
 }
@@ -193,13 +217,13 @@ export function MorphingShape() {
             d: [
               "M200,50 Q350,100 350,200 Q350,300 200,350 Q50,300 50,200 Q50,100 200,50",
               "M200,80 Q320,120 320,200 Q320,280 200,320 Q80,280 80,200 Q80,120 200,80",
-              "M200,50 Q350,100 350,200 Q350,300 200,350 Q50,300 50,200 Q50,100 200,50"
-            ]
+              "M200,50 Q350,100 350,200 Q350,300 200,350 Q50,300 50,200 Q50,100 200,50",
+            ],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
         <defs>

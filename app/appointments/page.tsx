@@ -13,17 +13,10 @@ import {
   Clock,
   Users,
   Video,
-  MapPin,
   CheckCircle,
   AlertCircle,
-  Phone,
-  Mail,
   MessageCircle,
   FileText,
-  Globe,
-  Shield,
-  Star,
-  ArrowRight,
   Bell,
 } from "lucide-react";
 
@@ -55,7 +48,9 @@ export default function AppointmentsPage() {
       >
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">Coming Soon</span>
+          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">
+            Coming Soon
+          </span>
         </div>
       </motion.div>
 
@@ -77,21 +72,27 @@ export default function AppointmentsPage() {
               </Badge>
 
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Schedule Your <span className="text-gradient-neon">Consultations</span>
+                Schedule Your{" "}
+                <span className="text-gradient-neon">Consultations</span>
               </h1>
 
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Book visa interviews, financial consultations, and support sessions with our expert team.
-                Get personalized guidance for your international student journey.
+                Book visa interviews, financial consultations, and support
+                sessions with our expert team. Get personalized guidance for
+                your international student journey.
               </p>
 
               <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-6 mb-8">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5" />
                   <div>
-                    <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">Coming Soon</h3>
+                    <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">
+                      Coming Soon
+                    </h3>
                     <p className="text-amber-700 dark:text-amber-300 text-sm">
-                      Our appointment booking system is currently being developed. Join our waitlist to be notified when it's available.
+                      Our appointment booking system is currently being
+                      developed. Join our waitlist to be notified when it's
+                      available.
                     </p>
                   </div>
                 </div>
@@ -102,7 +103,10 @@ export default function AppointmentsPage() {
                   Get Notified
                   <Bell className="w-4 h-4 ml-2" />
                 </Button>
-                <Button variant="outline" className="border-gray-300 dark:border-gray-600 px-8 py-3">
+                <Button
+                  variant="outline"
+                  className="border-gray-300 dark:border-gray-600 px-8 py-3"
+                >
                   Contact Support
                   <MessageCircle className="w-4 h-4 ml-2" />
                 </Button>
@@ -129,7 +133,11 @@ export default function AppointmentsPage() {
                 <motion.div
                   className="absolute top-6 right-6 glass-card p-3 rounded-xl"
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   <div className="flex items-center gap-2 text-white">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -140,7 +148,12 @@ export default function AppointmentsPage() {
                 <motion.div
                   className="absolute bottom-6 left-6 glass-card p-4 rounded-xl"
                   animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
                 >
                   <div className="text-white">
                     <div className="text-2xl font-bold">15min</div>
@@ -167,7 +180,8 @@ export default function AppointmentsPage() {
               Available Consultation Types
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Choose from various consultation options tailored to your specific needs
+              Choose from various consultation options tailored to your specific
+              needs
             </p>
           </motion.div>
 
@@ -176,21 +190,33 @@ export default function AppointmentsPage() {
               {
                 icon: FileText,
                 title: "Visa Consultation",
-                description: "Expert guidance on visa applications and requirements",
+                description:
+                  "Expert guidance on visa applications and requirements",
                 duration: "45 minutes",
                 price: "Free",
-                features: ["Document review", "Application guidance", "Q&A session"],
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
+                features: [
+                  "Document review",
+                  "Application guidance",
+                  "Q&A session",
+                ],
+                image:
+                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
                 color: "from-blue-500 to-cyan-500",
               },
               {
                 icon: Users,
                 title: "Financial Planning",
-                description: "Personalized financial planning for your education",
+                description:
+                  "Personalized financial planning for your education",
                 duration: "60 minutes",
                 price: "$50",
-                features: ["Budget planning", "Loan guidance", "Investment advice"],
-                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&crop=center",
+                features: [
+                  "Budget planning",
+                  "Loan guidance",
+                  "Investment advice",
+                ],
+                image:
+                  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&crop=center",
                 color: "from-green-500 to-emerald-500",
               },
               {
@@ -200,7 +226,8 @@ export default function AppointmentsPage() {
                 duration: "30 minutes",
                 price: "Free",
                 features: ["Platform guidance", "Account help", "General Q&A"],
-                image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop&crop=center",
+                image:
+                  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop&crop=center",
                 color: "from-purple-500 to-violet-500",
               },
             ].map((type, index) => (
@@ -221,14 +248,18 @@ export default function AppointmentsPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${type.color} rounded-full text-white text-sm font-medium`}>
+                    <div
+                      className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${type.color} rounded-full text-white text-sm font-medium`}
+                    >
                       {type.price}
                     </div>
                   </div>
 
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-10 h-10 bg-gradient-to-r ${type.color} rounded-lg flex items-center justify-center`}>
+                      <div
+                        className={`w-10 h-10 bg-gradient-to-r ${type.color} rounded-lg flex items-center justify-center`}
+                      >
                         <type.icon className="w-5 h-5 text-white" />
                       </div>
                       <div>
@@ -240,13 +271,17 @@ export default function AppointmentsPage() {
                       </div>
                     </div>
 
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{type.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      {type.description}
+                    </p>
 
                     <div className="space-y-2 mb-6">
                       {type.features.map((feature, idx) => (
                         <div key={idx} className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-500" />
-                          <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            {feature}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -320,11 +355,15 @@ export default function AppointmentsPage() {
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center border-2 border-teal-500">
-                    <span className="text-sm font-bold text-teal-500">{step.step}</span>
+                    <span className="text-sm font-bold text-teal-500">
+                      {step.step}
+                    </span>
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{step.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  {step.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -344,14 +383,18 @@ export default function AppointmentsPage() {
               Get Expert Guidance When You Need It
             </h2>
             <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Our team of experts is ready to help you navigate your international student journey with personalized consultations.
+              Our team of experts is ready to help you navigate your
+              international student journey with personalized consultations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-white text-teal-600 hover:bg-gray-100 px-8 py-3">
                 Join Waitlist
                 <Bell className="w-4 h-4 ml-2" />
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-teal-600 px-8 py-3">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-teal-600 px-8 py-3"
+              >
                 Contact Us
                 <MessageCircle className="w-4 h-4 ml-2" />
               </Button>

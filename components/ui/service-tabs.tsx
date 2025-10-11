@@ -4,15 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  DollarSign,
-  GraduationCap,
-  FileText,
-  Calendar,
-  Wallet,
-  BookOpen,
-  ChevronRight
-} from "lucide-react";
+import { DollarSign, Wallet, BookOpen, ChevronRight } from "lucide-react";
 
 interface ServiceTab {
   id: string;
@@ -33,34 +25,35 @@ const serviceTabs: ServiceTab[] = [
     id: "payments",
     title: "Payment Services",
     icon: DollarSign,
-    description: "Fast, secure payment solutions for all your student financial needs",
+    description:
+      "Fast, secure payment solutions for all your student financial needs",
     highlight: "Lightning-fast processing",
     services: [
       {
         title: "SEVIS Fee Payment",
         description: "Pay your I-901 SEVIS fees instantly",
         icon: "🏛️",
-        gradient: "from-green-400 to-emerald-600"
+        gradient: "from-green-400 to-emerald-600",
       },
       {
         title: "Tuition & School Fees",
         description: "Direct university payment processing",
         icon: "🎓",
-        gradient: "from-blue-400 to-cyan-600"
+        gradient: "from-blue-400 to-cyan-600",
       },
       {
         title: "Application Fees",
         description: "University and exam application fees",
         icon: "📝",
-        gradient: "from-purple-400 to-violet-600"
+        gradient: "from-purple-400 to-violet-600",
       },
       {
         title: "Housing & Living Expenses",
         description: "Accommodation and living cost payments",
         icon: "🏠",
-        gradient: "from-orange-400 to-red-600"
-      }
-    ]
+        gradient: "from-orange-400 to-red-600",
+      },
+    ],
   },
   {
     id: "banking",
@@ -73,27 +66,27 @@ const serviceTabs: ServiceTab[] = [
         title: "Digital Wallet",
         description: "Multi-currency wallet management",
         icon: "💳",
-        gradient: "from-blue-400 to-cyan-600"
+        gradient: "from-blue-400 to-cyan-600",
       },
       {
         title: "Credit Builder",
         description: "Build credit with everyday spending",
         icon: "📈",
-        gradient: "from-green-400 to-emerald-600"
+        gradient: "from-green-400 to-emerald-600",
       },
       {
         title: "Student Loans",
         description: "Flexible loan options for students",
         icon: "🏦",
-        gradient: "from-purple-400 to-violet-600"
+        gradient: "from-purple-400 to-violet-600",
       },
       {
         title: "Savings Account",
         description: "High-yield savings for students",
         icon: "🐷",
-        gradient: "from-pink-400 to-rose-600"
-      }
-    ]
+        gradient: "from-pink-400 to-rose-600",
+      },
+    ],
   },
   {
     id: "services",
@@ -106,33 +99,34 @@ const serviceTabs: ServiceTab[] = [
         title: "Document Management",
         description: "Secure storage and verification",
         icon: "📁",
-        gradient: "from-orange-400 to-red-600"
+        gradient: "from-orange-400 to-red-600",
       },
       {
         title: "Interview Booking",
         description: "Schedule visa interviews easily",
         icon: "📅",
-        gradient: "from-pink-400 to-rose-600"
+        gradient: "from-pink-400 to-rose-600",
       },
       {
         title: "Scholarship Search",
         description: "Find and apply for scholarships",
         icon: "🎯",
-        gradient: "from-indigo-400 to-purple-600"
+        gradient: "from-indigo-400 to-purple-600",
       },
       {
         title: "Academic Resources",
         description: "Study tools and financial literacy",
         icon: "📚",
-        gradient: "from-cyan-400 to-blue-600"
-      }
-    ]
-  }
+        gradient: "from-cyan-400 to-blue-600",
+      },
+    ],
+  },
 ];
 
 export function ServiceTabs() {
   const [activeTab, setActiveTab] = useState("payments");
-  const currentTab = serviceTabs.find(tab => tab.id === activeTab) || serviceTabs[0];
+  const currentTab =
+    serviceTabs.find((tab) => tab.id === activeTab) || serviceTabs[0];
 
   return (
     <div className="w-full">
@@ -144,9 +138,10 @@ export function ServiceTabs() {
             onClick={() => setActiveTab(tab.id)}
             className={`
               flex items-center gap-3 px-6 py-3 rounded-2xl transition-all duration-300
-              ${activeTab === tab.id
-                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white'
+              ${
+                activeTab === tab.id
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg"
+                  : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white"
               }
             `}
           >
@@ -186,11 +181,13 @@ export function ServiceTabs() {
                 <Card className="glass-effect border-white/10 hover:border-purple-500/30 transition-all duration-300 group cursor-pointer">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className={`
+                      <div
+                        className={`
                         w-12 h-12 rounded-xl bg-gradient-to-r ${service.gradient}
                         flex items-center justify-center text-2xl
                         group-hover:scale-110 transition-transform duration-300
-                      `}>
+                      `}
+                      >
                         {service.icon}
                       </div>
                       <div className="flex-1">
@@ -234,9 +231,7 @@ export function ServiceTabs() {
                 <h4 className="text-2xl font-bold text-white">
                   {currentTab.title}
                 </h4>
-                <p className="text-gray-300">
-                  {currentTab.description}
-                </p>
+                <p className="text-gray-300">{currentTab.description}</p>
 
                 {/* Animated Progress Bars */}
                 <div className="space-y-3">

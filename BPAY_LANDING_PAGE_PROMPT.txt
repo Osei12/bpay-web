@@ -158,7 +158,7 @@ Create a modern, responsive landing page for **BPay**, a comprehensive mobile fi
 - Contact information
 - Links: Privacy Policy, Terms of Service, Support
 - Social media links
-- "© 2024 BPay. All rights reserved."
+- "© 2025 BPay. All rights reserved."
 
 ## Technical Implementation Guidelines
 

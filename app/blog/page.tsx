@@ -11,14 +11,7 @@ import {
   ArrowLeft,
   Calendar,
   Clock,
-  User,
   ArrowRight,
-  BookOpen,
-  TrendingUp,
-  DollarSign,
-  CreditCard,
-  Globe,
-  Star,
   Eye,
   MessageCircle,
 } from "lucide-react";
@@ -32,30 +25,36 @@ const fadeInUp = {
 const blogPosts = [
   {
     id: 1,
-    title: "Mastering SEVIS Fee Payments: A Complete Guide for International Students",
-    excerpt: "Everything you need to know about paying your I-901 SEVIS fee efficiently and avoiding common pitfalls.",
+    title:
+      "Mastering SEVIS Fee Payments: A Complete Guide for International Students",
+    excerpt:
+      "Everything you need to know about paying your I-901 SEVIS fee efficiently and avoiding common pitfalls.",
     author: "Sarah Chen",
     authorRole: "Student Financial Advisor",
     publishDate: "Nov 28, 2024",
     readTime: "8 min read",
     category: "SEVIS Payments",
     featured: true,
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop&crop=center",
     views: "2.4k",
     comments: 42,
     tags: ["SEVIS", "Student Visa", "Payments", "Guide"],
   },
   {
     id: 2,
-    title: "Building Credit Score as an International Student: 5 Proven Strategies",
-    excerpt: "Learn how to establish and build your US credit history from day one of your arrival.",
+    title:
+      "Building Credit Score as an International Student: 5 Proven Strategies",
+    excerpt:
+      "Learn how to establish and build your US credit history from day one of your arrival.",
     author: "Michael Rodriguez",
     authorRole: "Credit Building Expert",
     publishDate: "Nov 25, 2024",
     readTime: "6 min read",
     category: "Credit Building",
     featured: false,
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
     views: "1.8k",
     comments: 28,
     tags: ["Credit Score", "Financial Planning", "Students"],
@@ -63,14 +62,16 @@ const blogPosts = [
   {
     id: 3,
     title: "Student Loan Options for International Students in 2024",
-    excerpt: "Comprehensive overview of available loan programs, eligibility requirements, and application tips.",
+    excerpt:
+      "Comprehensive overview of available loan programs, eligibility requirements, and application tips.",
     author: "Dr. Jennifer Park",
     authorRole: "Education Finance Specialist",
     publishDate: "Nov 22, 2024",
     readTime: "10 min read",
     category: "Student Loans",
     featured: false,
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
     views: "3.1k",
     comments: 65,
     tags: ["Student Loans", "Financial Aid", "Education"],
@@ -78,29 +79,34 @@ const blogPosts = [
   {
     id: 4,
     title: "Managing Multi-Currency Finances: Tips for Global Students",
-    excerpt: "Smart strategies for handling finances across different currencies and countries.",
+    excerpt:
+      "Smart strategies for handling finances across different currencies and countries.",
     author: "Alex Kumar",
     authorRole: "International Finance Advisor",
     publishDate: "Nov 20, 2024",
     readTime: "7 min read",
     category: "Money Management",
     featured: false,
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
     views: "1.5k",
     comments: 19,
     tags: ["Currency", "International", "Finance"],
   },
   {
     id: 5,
-    title: "Top 10 Financial Mistakes International Students Make (And How to Avoid Them)",
-    excerpt: "Common financial pitfalls and practical advice to keep your finances on track while studying abroad.",
+    title:
+      "Top 10 Financial Mistakes International Students Make (And How to Avoid Them)",
+    excerpt:
+      "Common financial pitfalls and practical advice to keep your finances on track while studying abroad.",
     author: "Lisa Thompson",
     authorRole: "Student Success Coordinator",
     publishDate: "Nov 18, 2024",
     readTime: "9 min read",
     category: "Financial Tips",
     featured: false,
-    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=600&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=600&fit=crop&crop=center",
     views: "2.7k",
     comments: 51,
     tags: ["Tips", "Common Mistakes", "Student Life"],
@@ -108,14 +114,16 @@ const blogPosts = [
   {
     id: 6,
     title: "Scholarship Opportunities for International Students: Hidden Gems",
-    excerpt: "Discover lesser-known scholarship programs that can significantly reduce your education costs.",
+    excerpt:
+      "Discover lesser-known scholarship programs that can significantly reduce your education costs.",
     author: "David Williams",
     authorRole: "Scholarship Research Specialist",
     publishDate: "Nov 15, 2024",
     readTime: "12 min read",
     category: "Scholarships",
     featured: false,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center",
     views: "4.2k",
     comments: 87,
     tags: ["Scholarships", "Financial Aid", "Education"],
@@ -133,8 +141,8 @@ const categories = [
 ];
 
 export default function BlogPage() {
-  const featuredPost = blogPosts.find(post => post.featured);
-  const otherPosts = blogPosts.filter(post => !post.featured);
+  const featuredPost = blogPosts.find((post) => post.featured);
+  const otherPosts = blogPosts.filter((post) => !post.featured);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white">
@@ -169,7 +177,8 @@ export default function BlogPage() {
               BPay <span className="text-gradient-neon">Blog</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Financial insights, tips, and guides crafted specifically for international students navigating their educational journey
+              Financial insights, tips, and guides crafted specifically for
+              international students navigating their educational journey
             </p>
           </motion.div>
 
@@ -200,7 +209,10 @@ export default function BlogPage() {
                   {/* Content Side */}
                   <CardContent className="p-8 lg:p-12 flex flex-col justify-center">
                     <div className="flex items-center gap-4 mb-4">
-                      <Badge variant="outline" className="text-purple-600 border-purple-200">
+                      <Badge
+                        variant="outline"
+                        className="text-purple-600 border-purple-200"
+                      >
                         {featuredPost.category}
                       </Badge>
                       <div className="flex items-center gap-4 text-sm text-gray-500">
@@ -229,8 +241,12 @@ export default function BlogPage() {
                           {featuredPost.author.charAt(0)}
                         </div>
                         <div>
-                          <div className="font-semibold">{featuredPost.author}</div>
-                          <div className="text-sm text-gray-500">{featuredPost.authorRole}</div>
+                          <div className="font-semibold">
+                            {featuredPost.author}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            {featuredPost.authorRole}
+                          </div>
                         </div>
                       </div>
 
@@ -333,8 +349,12 @@ export default function BlogPage() {
                         {post.author.charAt(0)}
                       </div>
                       <div>
-                        <div className="font-semibold text-sm">{post.author}</div>
-                        <div className="text-xs text-gray-500">{post.authorRole}</div>
+                        <div className="font-semibold text-sm">
+                          {post.author}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {post.authorRole}
+                        </div>
                       </div>
                     </div>
 
@@ -350,7 +370,11 @@ export default function BlogPage() {
                         </div>
                       </div>
 
-                      <Button size="sm" variant="outline" className="group-hover:bg-purple-500 group-hover:text-white group-hover:border-purple-500 transition-all">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="group-hover:bg-purple-500 group-hover:text-white group-hover:border-purple-500 transition-all"
+                      >
                         Read
                       </Button>
                     </div>
@@ -401,7 +425,8 @@ export default function BlogPage() {
               Never Miss a Financial Tip
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter and get weekly insights, tips, and guides delivered straight to your inbox.
+              Subscribe to our newsletter and get weekly insights, tips, and
+              guides delivered straight to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input

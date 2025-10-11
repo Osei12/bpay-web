@@ -423,14 +423,9 @@ export default function CleanHomePage() {
               transition={{ duration: 0.3 }}
             >
               <SafeThemeToggle />
+
               <Button
-                variant="outline"
-                className={`transition-all duration-300 ${isScrolled ? "px-3 py-2 text-sm" : "px-4 py-2"}`}
-              >
-                Sign In
-              </Button>
-              <Button
-                className={`bg-gradient-to-r text-white from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ${
+                className={`bg-purple-500 text-white transition-all duration-300 ${
                   isScrolled ? "px-4 py-2 text-sm" : "px-6 py-3"
                 }`}
               >
@@ -509,7 +504,6 @@ export default function CleanHomePage() {
 
                 {/* Mobile Actions */}
                 <div className="pt-4 space-y-3">
-                  <Button variant="outline" className="w-full">Sign In</Button>
                   <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white">
                     Get Started
                   </Button>
@@ -1162,7 +1156,7 @@ export default function CleanHomePage() {
                     accent: "border-blue-500",
                     bgAccent: "bg-blue-50 dark:bg-blue-900/20",
                     icon: CreditCard,
-                    position: "top-1/4 -right-16 translate-x-full -translate-y-1/2", // Top Right - closer
+                    position: "top-1/4 -left-14 lg:right-6  translate-x-full -translate-y-1/2", // Top Right - closer
                   },
                   {
                     title: "Student Loans",
@@ -1172,7 +1166,7 @@ export default function CleanHomePage() {
                     bgAccent: "bg-purple-50 dark:bg-purple-900/20",
                     icon: GraduationCap,
                     comingSoon: true,
-                    position: "bottom-1/4 -right-16 translate-x-full translate-y-1/2", // Bottom Right - closer
+                    position: "bottom-1/4 -left-24 2xl:-right-16 translate-x-full translate-y-1/2", // Bottom Right - closer
                   },
                   {
                     title: "Bank-Level Security",
@@ -1190,7 +1184,7 @@ export default function CleanHomePage() {
                     accent: "border-pink-500",
                     bgAccent: "bg-pink-50 dark:bg-pink-900/20",
                     icon: Globe,
-                    position: "bottom-1/4 -left-16 -translate-x-full translate-y-1/2", // Bottom Left - closer
+                    position: "bottom-1/4 -right-14 -translate-x-full translate-y-1/2", // Bottom Left - closer
                   },
                   {
                     title: "Instant Processing",
@@ -1199,7 +1193,7 @@ export default function CleanHomePage() {
                     accent: "border-indigo-500",
                     bgAccent: "bg-indigo-50 dark:bg-indigo-900/20",
                     icon: Zap,
-                    position: "top-1/4 -left-16 -translate-x-full -translate-y-1/2", // Top Left - closer
+                    position: "top-1/6 -right-0 -translate-x-full -translate-y-1/2", // Top Left - closer
                   },
                   {
                     title: "Appointment Booking",
@@ -1209,7 +1203,7 @@ export default function CleanHomePage() {
                     bgAccent: "bg-teal-50 dark:bg-teal-900/20",
                     icon: Users,
                     comingSoon: true,
-                    position: "top-1/2 -right-20 translate-x-full -translate-y-1/2", // Mid Right - closer
+                    position: "bottom-0 hidden -left-20 translate-x-full -translate-y-1/2", // Mid Right - closer
                   },
                 ].map((feature, index) => (
                   <motion.button
@@ -1697,7 +1691,7 @@ export default function CleanHomePage() {
               <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
                 <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm text-gray-600 dark:text-gray-400">
                   <div className="relative">
-                    <span>© 2024 BPay. All rights reserved.</span>
+                    <span>© 2025 BPay. All rights reserved.</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 transform -skew-x-6 scale-110"></div>
                   </div>
                   <span className="hidden sm:inline">|</span>

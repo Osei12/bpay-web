@@ -3,18 +3,21 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { PhoneMockup } from "@/components/ui/phone-mockup";
 import { FeatureIllustration } from "@/components/ui/feature-illustration";
-import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { InteractiveCard } from "@/components/ui/interactive-card";
-import { ServiceTabs } from "@/components/ui/service-tabs";
 import { TrustIndicators } from "@/components/ui/trust-indicators";
 import { FAQSection } from "@/components/ui/faq-section";
 import { SafeThemeToggle } from "@/components/ui/theme-toggle-safe";
 import { AnimatedStatsGrid } from "@/components/ui/animated-stats";
-import { FloatingUIElements, ModernCard } from "@/components/ui/floating-elements";
-import { Reveal, StaggeredReveal, TypewriterText } from "@/components/ui/reveal-animations";
+import {
+  FloatingUIElements,
+  ModernCard,
+} from "@/components/ui/floating-elements";
+import {
+  Reveal,
+  StaggeredReveal,
+  TypewriterText,
+} from "@/components/ui/reveal-animations";
 import {
   Smartphone,
   DollarSign,
@@ -36,100 +39,102 @@ import {
   Menu,
   X,
   CreditCard,
-  Lock,
-  TrendingUp,
-  Award,
-  Clock,
-  MapPin,
-  Phone,
-  Mail,
-  Eye,
-  EyeOff
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { ServiceTabs } from "@/components/ui/service-tabs";
+import { PhoneMockup } from "@/components/ui/phone-mockup";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.6 },
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 const features = [
   {
     icon: DollarSign,
     title: "SEVIS Fee Payments",
-    description: "Pay your I-901 SEVIS fees securely and instantly with multiple payment options and real-time confirmation.",
-    gradient: "from-green-400 to-emerald-600"
+    description:
+      "Pay your I-901 SEVIS fees securely and instantly with multiple payment options and real-time confirmation.",
+    gradient: "from-green-400 to-emerald-600",
   },
   {
     icon: Wallet,
     title: "Digital Wallet",
-    description: "Manage your finances with our secure digital wallet supporting GHS and USD currencies.",
-    gradient: "from-blue-400 to-cyan-600"
+    description:
+      "Manage your finances with our secure digital wallet supporting GHS and USD currencies.",
+    gradient: "from-blue-400 to-cyan-600",
   },
   {
     icon: GraduationCap,
     title: "Student Loans",
-    description: "Apply for student loans with streamlined processes and track loan status with ease.",
-    gradient: "from-purple-400 to-violet-600"
+    description:
+      "Apply for student loans with streamlined processes and track loan status with ease.",
+    gradient: "from-purple-400 to-violet-600",
   },
   {
     icon: FileText,
     title: "Document Management",
-    description: "Securely store and manage important documents with KYC verification and document scanning.",
-    gradient: "from-orange-400 to-red-600"
+    description:
+      "Securely store and manage important documents with KYC verification and document scanning.",
+    gradient: "from-orange-400 to-red-600",
   },
   {
     icon: Calendar,
     title: "Interview Booking",
-    description: "Schedule visa interview appointments easily with automated reminders and calendar integration.",
-    gradient: "from-pink-400 to-rose-600"
+    description:
+      "Schedule visa interview appointments easily with automated reminders and calendar integration.",
+    gradient: "from-pink-400 to-rose-600",
   },
   {
     icon: BookOpen,
     title: "Educational Resources",
-    description: "Access scholarship information, educational quizzes, and financial literacy resources.",
-    gradient: "from-indigo-400 to-purple-600"
-  }
+    description:
+      "Access scholarship information, educational quizzes, and financial literacy resources.",
+    gradient: "from-indigo-400 to-purple-600",
+  },
 ];
 
 const testimonials = [
   {
     name: "Sarah K.",
     role: "Graduate Student",
-    content: "BPay made paying my SEVIS fee so much easier. The whole process was done in minutes!",
+    content:
+      "BPay made paying my SEVIS fee so much easier. The whole process was done in minutes!",
     rating: 5,
-    avatar: "🎓"
+    avatar: "🎓",
   },
   {
     name: "Michael O.",
     role: "International Student",
-    content: "Finally, a financial app that understands student needs. The loan application was straightforward.",
+    content:
+      "Finally, a financial app that understands student needs. The loan application was straightforward.",
     rating: 5,
-    avatar: "👨‍🎓"
+    avatar: "👨‍🎓",
   },
   {
     name: "Priya S.",
     role: "PhD Student",
-    content: "The document management feature saved me during my visa interview. Everything was organized perfectly.",
+    content:
+      "The document management feature saved me during my visa interview. Everything was organized perfectly.",
     rating: 5,
-    avatar: "👩‍🔬"
-  }
+    avatar: "👩‍🔬",
+  },
 ];
 
 const stats = [
   { number: "10K+", label: "Students Served" },
   { number: "99.9%", label: "Uptime" },
   { number: "24/7", label: "Support" },
-  { number: "256-bit", label: "Encryption" }
+  { number: "256-bit", label: "Encryption" },
 ];
 
 export default function Home() {
@@ -176,28 +181,34 @@ export default function Home() {
         <div
           className="absolute w-96 h-96 bg-purple-500/20 dark:bg-purple-500/20 light:bg-purple-300/30 rounded-full blur-3xl will-change-transform"
           style={{
-            transform: `translate3d(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px, 0)`,
-            left: '10%',
-            top: '20%',
-            animation: 'float 8s ease-in-out infinite'
+            transform: `translate3d(${mousePosition.x * 0.01}px, ${
+              mousePosition.y * 0.01
+            }px, 0)`,
+            left: "10%",
+            top: "20%",
+            animation: "float 8s ease-in-out infinite",
           }}
         />
         <div
           className="absolute w-80 h-80 bg-blue-500/20 dark:bg-blue-500/20 light:bg-blue-300/30 rounded-full blur-3xl will-change-transform"
           style={{
-            transform: `translate3d(${mousePosition.x * -0.01}px, ${mousePosition.y * -0.01}px, 0)`,
-            right: '10%',
-            top: '60%',
-            animation: 'float 8s ease-in-out infinite 2s'
+            transform: `translate3d(${mousePosition.x * -0.01}px, ${
+              mousePosition.y * -0.01
+            }px, 0)`,
+            right: "10%",
+            top: "60%",
+            animation: "float 8s ease-in-out infinite 2s",
           }}
         />
         <div
           className="absolute w-64 h-64 bg-pink-500/20 dark:bg-pink-500/20 light:bg-pink-300/30 rounded-full blur-3xl will-change-transform"
           style={{
-            transform: `translate3d(${mousePosition.x * 0.005}px, ${mousePosition.y * 0.005}px, 0)`,
-            left: '50%',
-            bottom: '20%',
-            animation: 'float 8s ease-in-out infinite 4s'
+            transform: `translate3d(${mousePosition.x * 0.005}px, ${
+              mousePosition.y * 0.005
+            }px, 0)`,
+            left: "50%",
+            bottom: "20%",
+            animation: "float 8s ease-in-out infinite 4s",
           }}
         />
       </div>
@@ -205,9 +216,7 @@ export default function Home() {
       {/* Navigation */}
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-          isScrolled
-            ? 'py-2 px-6'
-            : 'py-4 px-6'
+          isScrolled ? "py-2 px-6" : "py-4 px-6"
         }`}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -216,12 +225,12 @@ export default function Home() {
         <motion.div
           className={`mx-auto flex items-center justify-between transition-all duration-500 ease-out ${
             isScrolled
-              ? 'max-w-4xl bg-black/80 dark:bg-black/80 light:bg-white/90 backdrop-blur-xl border border-white/20 dark:border-white/20 light:border-black/10 rounded-full px-6 py-3 shadow-2xl'
-              : 'max-w-7xl bg-transparent'
+              ? "max-w-4xl bg-black/80 dark:bg-black/80 light:bg-white/90 backdrop-blur-xl border border-white/20 dark:border-white/20 light:border-black/10 rounded-full px-6 py-3 shadow-2xl"
+              : "max-w-7xl bg-transparent"
           }`}
           animate={{
             scale: isScrolled ? 0.95 : 1,
-            y: isScrolled ? 5 : 0
+            y: isScrolled ? 5 : 0,
           }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
@@ -229,23 +238,43 @@ export default function Home() {
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
             animate={{
-              scale: isScrolled ? 0.9 : 1
+              scale: isScrolled ? 0.9 : 1,
             }}
             transition={{ duration: 0.3 }}
           >
-            <div className={`${isScrolled ? 'w-8 h-8' : 'w-10 h-10'} bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300`}>
-              <Smartphone className={`${isScrolled ? 'w-4 h-4' : 'w-6 h-6'} text-white transition-all duration-300`} />
+            <div
+              className={`${
+                isScrolled ? "w-8 h-8" : "w-10 h-10"
+              } bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300`}
+            >
+              <Smartphone
+                className={`${
+                  isScrolled ? "w-4 h-4" : "w-6 h-6"
+                } text-white transition-all duration-300`}
+              />
             </div>
-            <span className={`${isScrolled ? 'text-lg' : 'text-2xl'} font-bold font-poppins transition-all duration-300 text-white dark:text-white light:text-gray-900`}>BPay</span>
+            <span
+              className={`${
+                isScrolled ? "text-lg" : "text-2xl"
+              } font-bold font-poppins transition-all duration-300 text-white dark:text-white light:text-gray-900`}
+            >
+              BPay
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className={`hidden md:flex items-center transition-all duration-300 ${isScrolled ? 'space-x-6' : 'space-x-8'}`}>
+          <div
+            className={`hidden md:flex items-center transition-all duration-300 ${
+              isScrolled ? "space-x-6" : "space-x-8"
+            }`}
+          >
             {["Features", "Security", "Testimonials", "FAQ"].map((item) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`text-gray-300 dark:text-gray-300 light:text-gray-600 hover:text-white dark:hover:text-white light:hover:text-gray-900 transition-all duration-300 ${isScrolled ? 'text-sm' : 'text-base'}`}
+                className={`text-gray-300 dark:text-gray-300 light:text-gray-600 hover:text-white dark:hover:text-white light:hover:text-gray-900 transition-all duration-300 ${
+                  isScrolled ? "text-sm" : "text-base"
+                }`}
                 whileHover={{ y: -2 }}
               >
                 {item}
@@ -253,16 +282,24 @@ export default function Home() {
             ))}
           </div>
 
-          <div className={`hidden md:flex items-center transition-all duration-300 ${isScrolled ? 'space-x-3' : 'space-x-4'}`}>
+          <div
+            className={`hidden md:flex items-center transition-all duration-300 ${
+              isScrolled ? "space-x-3" : "space-x-4"
+            }`}
+          >
             <SafeThemeToggle />
             <Button
               variant="ghost"
-              className={`text-white dark:text-white light:text-gray-700 hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 transition-all duration-300 ${isScrolled ? 'text-sm px-3 py-1 h-8' : 'px-4 py-2'}`}
+              className={`text-white dark:text-white light:text-gray-700 hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 transition-all duration-300 ${
+                isScrolled ? "text-sm px-3 py-1 h-8" : "px-4 py-2"
+              }`}
             >
               Sign In
             </Button>
             <Button
-              className={`bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300 ${isScrolled ? 'text-sm px-3 py-1 h-8' : 'px-4 py-2'}`}
+              className={`bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all duration-300 ${
+                isScrolled ? "text-sm px-3 py-1 h-8" : "px-4 py-2"
+              }`}
             >
               Download App
             </Button>
@@ -283,7 +320,9 @@ export default function Home() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <motion.div
-            className={`md:hidden absolute left-4 right-4 top-full mt-2 bg-black/90 dark:bg-black/90 light:bg-white/95 backdrop-blur-lg border border-white/20 dark:border-white/20 light:border-black/10 rounded-2xl overflow-hidden ${isScrolled ? 'rounded-2xl' : 'rounded-lg'}`}
+            className={`md:hidden absolute left-4 right-4 top-full mt-2 bg-black/90 dark:bg-black/90 light:bg-white/95 backdrop-blur-lg border border-white/20 dark:border-white/20 light:border-black/10 rounded-2xl overflow-hidden ${
+              isScrolled ? "rounded-2xl" : "rounded-lg"
+            }`}
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
@@ -301,7 +340,10 @@ export default function Home() {
                 </a>
               ))}
               <div className="pt-4 space-y-2 border-t border-white/10 dark:border-white/10 light:border-black/10">
-                <Button variant="ghost" className="w-full text-white dark:text-white light:text-gray-700 hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10">
+                <Button
+                  variant="ghost"
+                  className="w-full text-white dark:text-white light:text-gray-700 hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10"
+                >
                   Sign In
                 </Button>
                 <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500">
@@ -344,7 +386,9 @@ export default function Home() {
 
               <Reveal direction="up" delay={0.4}>
                 <p className="text-xl text-gray-300 dark:text-gray-300 light:text-gray-600 leading-relaxed max-w-lg">
-                  The BPay App makes it simple for international students to pay for tuition and fees globally, build credit with everyday spending, and access AI-powered study abroad tools.
+                  The BPay App makes it simple for international students to pay
+                  for tuition and fees globally, build credit with everyday
+                  spending, and access AI-powered study abroad tools.
                 </p>
               </Reveal>
 
@@ -373,12 +417,14 @@ export default function Home() {
                       key={i}
                       className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-2 border-gray-900 flex items-center justify-center text-sm"
                     >
-                      {['🎓', '👨‍🎓', '👩‍🔬', '👨‍💼', '👩‍🎓'][i]}
+                      {["🎓", "👨‍🎓", "👩‍🔬", "👨‍💼", "👩‍🎓"][i]}
                     </div>
                   ))}
                 </div>
                 <div>
-                  <div className="text-white font-semibold">Trusted by 10K+ Students</div>
+                  <div className="text-white font-semibold">
+                    Trusted by 10K+ Students
+                  </div>
                   <div className="text-gray-400 text-sm">Worldwide</div>
                 </div>
               </motion.div>
@@ -430,17 +476,19 @@ export default function Home() {
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6 font-poppins">
               Everything You Need for
-              <span className="block text-gradient">Student Financial Success</span>
+              <span className="block text-gradient">
+                Student Financial Success
+              </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Comprehensive financial services designed specifically for international students
+              Comprehensive financial services designed specifically for
+              international students
             </p>
           </motion.div>
 
           <ServiceTabs />
         </div>
       </section>
-
 
       {/* How It Works Section */}
       <section className="relative z-10 px-6 py-32">
@@ -457,7 +505,8 @@ export default function Home() {
               <span className="text-gradient"> 3 Simple Steps</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Join thousands of students who have simplified their financial journey with BPay
+              Join thousands of students who have simplified their financial
+              journey with BPay
             </p>
           </motion.div>
 
@@ -469,7 +518,8 @@ export default function Home() {
               {
                 step: "01",
                 title: "Download & Register",
-                description: "Download BPay and create your secure account with KYC verification in minutes",
+                description:
+                  "Download BPay and create your secure account with KYC verification in minutes",
                 icon: Download,
                 visual: (
                   <div className="w-full h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center">
@@ -481,12 +531,13 @@ export default function Home() {
                       📱
                     </motion.div>
                   </div>
-                )
+                ),
               },
               {
                 step: "02",
                 title: "Add Payment Methods",
-                description: "Securely link your bank account or cards and set up your digital wallet",
+                description:
+                  "Securely link your bank account or cards and set up your digital wallet",
                 icon: CreditCard,
                 visual: (
                   <div className="w-full h-32 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center">
@@ -502,25 +553,30 @@ export default function Home() {
                       <div className="w-8 h-5 bg-gradient-to-r from-pink-400 to-pink-600 rounded"></div>
                     </motion.div>
                   </div>
-                )
+                ),
               },
               {
                 step: "03",
                 title: "Start Managing Finances",
-                description: "Pay SEVIS fees, apply for loans, book interviews, and access all student services",
+                description:
+                  "Pay SEVIS fees, apply for loans, book interviews, and access all student services",
                 icon: Zap,
                 visual: (
                   <div className="w-full h-32 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                       className="text-4xl"
                     >
                       🎯
                     </motion.div>
                   </div>
-                )
-              }
+                ),
+              },
             ].map((item, index) => (
               <Reveal key={index} direction="up" delay={index * 0.2}>
                 <ModernCard>
@@ -538,8 +594,12 @@ export default function Home() {
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-semibold mb-3 text-white dark:text-white light:text-gray-900">{item.title}</h3>
-                      <p className="text-gray-300 dark:text-gray-300 light:text-gray-600 leading-relaxed">{item.description}</p>
+                      <h3 className="text-2xl font-semibold mb-3 text-white dark:text-white light:text-gray-900">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-300 dark:text-gray-300 light:text-gray-600 leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
 
                     {item.visual}
@@ -566,7 +626,8 @@ export default function Home() {
                 <span className="block text-gradient">You Can Trust</span>
               </h2>
               <p className="text-xl text-gray-300 mb-8">
-                Your financial data and transactions are protected with industry-leading security measures
+                Your financial data and transactions are protected with
+                industry-leading security measures
               </p>
 
               <div className="space-y-4">
@@ -575,7 +636,7 @@ export default function Home() {
                   "Biometric authentication (Face ID/Fingerprint)",
                   "Secure document storage with access controls",
                   "PCI DSS compliant payment processing",
-                  "Multi-factor authentication support"
+                  "Multi-factor authentication support",
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
@@ -603,9 +664,12 @@ export default function Home() {
                 <CardContent>
                   <div className="text-center">
                     <Shield className="w-24 h-24 mx-auto mb-6 text-green-400" />
-                    <h3 className="text-2xl font-semibold mb-4">Your Data is Safe</h3>
+                    <h3 className="text-2xl font-semibold mb-4">
+                      Your Data is Safe
+                    </h3>
                     <p className="text-gray-400 mb-6">
-                      We use the same security standards as major banks to protect your information
+                      We use the same security standards as major banks to
+                      protect your information
                     </p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div className="bg-white/5 rounded-lg p-3">
@@ -661,17 +725,24 @@ export default function Home() {
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-yellow-400 fill-current"
+                        />
                       ))}
                     </div>
-                    <p className="text-gray-300 mb-6 italic">"{testimonial.content}"</p>
+                    <p className="text-gray-300 mb-6 italic">
+                      "{testimonial.content}"
+                    </p>
                     <div className="flex items-center">
                       <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-lg mr-3">
                         {testimonial.avatar}
                       </div>
                       <div>
                         <div className="font-semibold">{testimonial.name}</div>
-                        <div className="text-sm text-gray-400">{testimonial.role}</div>
+                        <div className="text-sm text-gray-400">
+                          {testimonial.role}
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -697,7 +768,8 @@ export default function Home() {
               <span className="block text-gradient">Questions</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Get quick answers to common questions about BPay's services and features
+              Get quick answers to common questions about BPay's services and
+              features
             </p>
           </motion.div>
 
@@ -719,7 +791,8 @@ export default function Home() {
               <span className="block text-gradient">Student Finances?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Join thousands of students already using BPay to manage their financial needs
+              Join thousands of students already using BPay to manage their
+              financial needs
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -759,43 +832,100 @@ export default function Home() {
                 <span className="text-xl font-bold font-poppins">BPay</span>
               </div>
               <p className="text-gray-400 text-sm">
-                Your complete financial companion for students. Secure, reliable, and designed with students in mind.
+                Your complete financial companion for students. Secure,
+                reliable, and designed with students in mind.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Product</h3>
               <div className="space-y-2 text-sm text-gray-400">
-                <div><a href="#features" className="hover:text-white transition-colors">Features</a></div>
-                <div><a href="#security" className="hover:text-white transition-colors">Security</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">Pricing</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">FAQ</a></div>
+                <div>
+                  <a
+                    href="#features"
+                    className="hover:text-white transition-colors"
+                  >
+                    Features
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href="#security"
+                    className="hover:text-white transition-colors"
+                  >
+                    Security
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Pricing
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    FAQ
+                  </a>
+                </div>
               </div>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <div className="space-y-2 text-sm text-gray-400">
-                <div><a href="#" className="hover:text-white transition-colors">Help Center</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">Contact Us</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">Terms of Service</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Help Center
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact Us
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Terms of Service
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                </div>
               </div>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Connect</h3>
               <div className="space-y-2 text-sm text-gray-400">
-                <div><a href="#" className="hover:text-white transition-colors">Twitter</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">LinkedIn</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">Facebook</a></div>
-                <div><a href="#" className="hover:text-white transition-colors">Instagram</a></div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Twitter
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    LinkedIn
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Facebook
+                  </a>
+                </div>
+                <div>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Instagram
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
-            <p>&copy; 2024 BPay. All rights reserved. Built with ❤️ for students.</p>
+            <p>
+              &copy; 2025 BPay. All rights reserved. Built with ❤️ for students.
+            </p>
           </div>
         </div>
       </footer>

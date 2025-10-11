@@ -14,18 +14,13 @@ import {
   Clock,
   CheckCircle,
   Star,
-  FileText,
-  Calculator,
   Shield,
   TrendingDown,
-  Users,
-  Globe,
   AlertCircle,
   ArrowRight,
   Mail,
   Phone,
   Calendar,
-  Target,
 } from "lucide-react";
 
 const fadeInUp = {
@@ -41,8 +36,13 @@ const loanTypes = [
     maxAmount: "$50,000",
     interestRate: "From 3.5%",
     repaymentTerm: "Up to 15 years",
-    features: ["No co-signer required", "Grace period available", "Flexible repayment"],
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&crop=center",
+    features: [
+      "No co-signer required",
+      "Grace period available",
+      "Flexible repayment",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop&crop=center",
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -51,8 +51,13 @@ const loanTypes = [
     maxAmount: "$100,000",
     interestRate: "From 4.2%",
     repaymentTerm: "Up to 20 years",
-    features: ["Higher loan limits", "Research funding", "Career-based repayment"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
+    features: [
+      "Higher loan limits",
+      "Research funding",
+      "Career-based repayment",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center",
     color: "from-purple-500 to-violet-500",
   },
   {
@@ -61,8 +66,13 @@ const loanTypes = [
     maxAmount: "$200,000",
     interestRate: "From 5.0%",
     repaymentTerm: "Up to 25 years",
-    features: ["Specialized programs", "Residency deferrals", "Income-driven options"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop&crop=center",
+    features: [
+      "Specialized programs",
+      "Residency deferrals",
+      "Income-driven options",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop&crop=center",
     color: "from-green-500 to-emerald-500",
   },
 ];
@@ -72,25 +82,31 @@ const loanBenefits = [
     icon: DollarSign,
     title: "Competitive Rates",
     description: "Industry-leading interest rates starting from 3.5% APR",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center",
   },
   {
     icon: Clock,
     title: "Quick Approval",
-    description: "Get approved in as little as 24 hours with our streamlined process",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center",
+    description:
+      "Get approved in as little as 24 hours with our streamlined process",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center",
   },
   {
     icon: Shield,
     title: "No Hidden Fees",
-    description: "Transparent pricing with no origination or prepayment penalties",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=center",
+    description:
+      "Transparent pricing with no origination or prepayment penalties",
+    image:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=center",
   },
   {
     icon: TrendingDown,
     title: "Flexible Repayment",
     description: "Choose from multiple repayment options that fit your budget",
-    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop&crop=center",
   },
 ];
 
@@ -98,26 +114,34 @@ const applicationSteps = [
   {
     step: 1,
     title: "Check Eligibility",
-    description: "Verify you meet our basic requirements for international students",
-    details: "Must be enrolled in an eligible program, have valid student status, and meet academic requirements.",
+    description:
+      "Verify you meet our basic requirements for international students",
+    details:
+      "Must be enrolled in an eligible program, have valid student status, and meet academic requirements.",
   },
   {
     step: 2,
     title: "Gather Documents",
-    description: "Collect required documents including transcripts and financial statements",
-    details: "Academic transcripts, enrollment verification, passport, and financial documentation required.",
+    description:
+      "Collect required documents including transcripts and financial statements",
+    details:
+      "Academic transcripts, enrollment verification, passport, and financial documentation required.",
   },
   {
     step: 3,
     title: "Complete Application",
-    description: "Fill out our online application form with personal and academic information",
-    details: "Comprehensive application takes 15-20 minutes to complete with all required information.",
+    description:
+      "Fill out our online application form with personal and academic information",
+    details:
+      "Comprehensive application takes 15-20 minutes to complete with all required information.",
   },
   {
     step: 4,
     title: "Review & Approval",
-    description: "Our team reviews your application and provides a decision within 24-48 hours",
-    details: "Automated review process with human oversight ensures quick and accurate decisions.",
+    description:
+      "Our team reviews your application and provides a decision within 24-48 hours",
+    details:
+      "Automated review process with human oversight ensures quick and accurate decisions.",
   },
 ];
 
@@ -127,7 +151,8 @@ const testimonials = [
     program: "MBA Student",
     university: "Stanford University",
     country: "Mexico",
-    quote: "BPay's student loan made my MBA dream possible. The application was straightforward and the rates were better than anywhere else I looked.",
+    quote:
+      "BPay's student loan made my MBA dream possible. The application was straightforward and the rates were better than anywhere else I looked.",
     rating: 5,
     image: "👩🏻‍🎓",
   },
@@ -136,7 +161,8 @@ const testimonials = [
     program: "PhD Computer Science",
     university: "MIT",
     country: "China",
-    quote: "As an international student, finding loans was challenging. BPay understood my situation and provided excellent support throughout the process.",
+    quote:
+      "As an international student, finding loans was challenging. BPay understood my situation and provided excellent support throughout the process.",
     rating: 5,
     image: "👨🏻‍💻",
   },
@@ -145,7 +171,8 @@ const testimonials = [
     program: "Medical Student",
     university: "Harvard Medical School",
     country: "India",
-    quote: "The flexible repayment options and competitive rates made BPay the obvious choice for financing my medical education.",
+    quote:
+      "The flexible repayment options and competitive rates made BPay the obvious choice for financing my medical education.",
     rating: 5,
     image: "👨🏽‍⚕️",
   },
@@ -179,7 +206,9 @@ export default function StudentLoansPage() {
       >
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">Coming Soon</span>
+          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">
+            Coming Soon
+          </span>
         </div>
       </motion.div>
 
@@ -199,7 +228,12 @@ export default function StudentLoansPage() {
           <motion.div
             className="absolute top-40 right-20 w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center"
             animate={{ y: [0, 15, 0], rotate: [0, -15, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           >
             <DollarSign className="w-6 h-6 text-blue-500" />
           </motion.div>
@@ -219,21 +253,26 @@ export default function StudentLoansPage() {
               </Badge>
 
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Fund Your <span className="text-gradient-neon">Education Dreams</span>
+                Fund Your{" "}
+                <span className="text-gradient-neon">Education Dreams</span>
               </h1>
 
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Competitive student loans designed specifically for international students.
-                Quick approval, flexible terms, and competitive rates to help you achieve your academic goals.
+                Competitive student loans designed specifically for
+                international students. Quick approval, flexible terms, and
+                competitive rates to help you achieve your academic goals.
               </p>
 
               <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-6 mb-8">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5" />
                   <div>
-                    <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">Coming Soon</h3>
+                    <h3 className="font-semibold text-amber-800 dark:text-amber-200 mb-2">
+                      Coming Soon
+                    </h3>
                     <p className="text-amber-700 dark:text-amber-300 text-sm">
-                      Our student loan program is currently in development. Join our waitlist to be notified when applications open.
+                      Our student loan program is currently in development. Join
+                      our waitlist to be notified when applications open.
                     </p>
                   </div>
                 </div>
@@ -244,7 +283,10 @@ export default function StudentLoansPage() {
                   Join Waitlist
                   <Mail className="w-4 h-4 ml-2" />
                 </Button>
-                <Button variant="outline" className="border-gray-300 dark:border-gray-600 px-8 py-3">
+                <Button
+                  variant="outline"
+                  className="border-gray-300 dark:border-gray-600 px-8 py-3"
+                >
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -271,7 +313,11 @@ export default function StudentLoansPage() {
                 <motion.div
                   className="absolute top-6 right-6 glass-card p-4 rounded-xl"
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   <div className="text-white">
                     <div className="text-2xl font-bold">3.5%</div>
@@ -282,7 +328,12 @@ export default function StudentLoansPage() {
                 <motion.div
                   className="absolute bottom-6 left-6 glass-card p-4 rounded-xl"
                   animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
                 >
                   <div className="text-white">
                     <div className="text-2xl font-bold">24h</div>
@@ -309,7 +360,8 @@ export default function StudentLoansPage() {
               Loan Options for Every Program
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Whether you're pursuing undergraduate, graduate, or professional studies, we have tailored loan options
+              Whether you're pursuing undergraduate, graduate, or professional
+              studies, we have tailored loan options
             </p>
           </motion.div>
 
@@ -333,28 +385,42 @@ export default function StudentLoansPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${loan.color} rounded-full text-white text-sm font-medium`}>
+                    <div
+                      className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${loan.color} rounded-full text-white text-sm font-medium`}
+                    >
                       {loan.title}
                     </div>
                   </div>
 
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-3">{loan.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6">{loan.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">
+                      {loan.description}
+                    </p>
 
                     {/* Loan Details */}
                     <div className="space-y-4 mb-6">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-600 dark:text-gray-400">Max Amount:</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Max Amount:
+                        </span>
                         <span className="font-semibold">{loan.maxAmount}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-600 dark:text-gray-400">Interest Rate:</span>
-                        <span className="font-semibold">{loan.interestRate}</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Interest Rate:
+                        </span>
+                        <span className="font-semibold">
+                          {loan.interestRate}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-600 dark:text-gray-400">Repayment:</span>
-                        <span className="font-semibold">{loan.repaymentTerm}</span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          Repayment:
+                        </span>
+                        <span className="font-semibold">
+                          {loan.repaymentTerm}
+                        </span>
                       </div>
                     </div>
 
@@ -363,7 +429,9 @@ export default function StudentLoansPage() {
                       {loan.features.map((feature, idx) => (
                         <div key={idx} className="flex items-center gap-2">
                           <CheckCircle className="w-4 h-4 text-green-500" />
-                          <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            {feature}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -389,7 +457,8 @@ export default function StudentLoansPage() {
               Why Choose BPay Student Loans?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We understand the unique challenges international students face and have designed our loans accordingly
+              We understand the unique challenges international students face
+              and have designed our loans accordingly
             </p>
           </motion.div>
 
@@ -419,7 +488,9 @@ export default function StudentLoansPage() {
                     </div>
                   </div>
                   <h3 className="text-lg font-bold mb-3">{benefit.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">{benefit.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    {benefit.description}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -462,8 +533,12 @@ export default function StudentLoansPage() {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3">{step.description}</p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{step.details}</p>
+                        <p className="text-gray-600 dark:text-gray-300 mb-3">
+                          {step.description}
+                        </p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {step.details}
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -509,8 +584,12 @@ export default function StudentLoansPage() {
                       </div>
                       <div>
                         <h4 className="font-semibold">{testimonial.name}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">{testimonial.program}</p>
-                        <p className="text-xs text-blue-600 dark:text-blue-400">{testimonial.university}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          {testimonial.program}
+                        </p>
+                        <p className="text-xs text-blue-600 dark:text-blue-400">
+                          {testimonial.university}
+                        </p>
                       </div>
                     </div>
 
@@ -520,7 +599,10 @@ export default function StudentLoansPage() {
 
                     <div className="flex items-center gap-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-yellow-400 fill-current"
+                        />
                       ))}
                     </div>
                   </CardContent>
@@ -549,14 +631,18 @@ export default function StudentLoansPage() {
               Ready to Fund Your Future?
             </h2>
             <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Join our waitlist today and be among the first to access our competitive student loan program when it launches.
+              Join our waitlist today and be among the first to access our
+              competitive student loan program when it launches.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-white text-green-600 hover:bg-gray-100 px-8 py-3">
                 Join Waitlist
                 <Mail className="w-4 h-4 ml-2" />
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-3">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-3"
+              >
                 Contact Us
                 <Phone className="w-4 h-4 ml-2" />
               </Button>
