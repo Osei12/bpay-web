@@ -1183,112 +1183,8 @@ export default function CleanHomePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true, amount: 0.2 }}
             >
-              {/* Central Image */}
-              <div className="flex justify-center items-center relative">
-                <Card className="overflow-hidden shadow-2xl border-0 bg-white dark:bg-gray-800 w-80 h-80 lg:w-96 lg:h-96 relative z-10">
-                  <div className="relative w-full h-full">
-                    <motion.div
-                      key={activeFeature}
-                      className="absolute inset-0"
-                      initial={{ opacity: 0, scale: 1.1, rotate: 5 }}
-                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
-                      <Image
-                        src={
-                          [
-                            "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
-                            "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
-                            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
-                            "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
-                            "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
-                            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
-                            "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&crop=center",
-                          ][activeFeature]
-                        }
-                        alt={
-                          [
-                            "SEVIS Fee Payments",
-                            "Build Credit Score",
-                            "Student Loans",
-                            "Bank-Level Security",
-                            "Global Transfers",
-                            "Instant Processing",
-                            "Appointment Booking",
-                          ][activeFeature]
-                        }
-                        fill
-                        className="object-cover rounded-xl"
-                      />
-                      {/* Gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl"></div>
-                    </motion.div>
-
-                    {/* Feature title overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <motion.h3
-                        key={`title-${activeFeature}`}
-                        className="text-xl lg:text-2xl font-bold text-white mb-2"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                      >
-                        {
-                          [
-                            "SEVIS Fee Payments",
-                            "Build Credit Score",
-                            "Student Loans",
-                            "Bank-Level Security",
-                            "Global Transfers",
-                            "Instant Processing",
-                            "Appointment Booking",
-                          ][activeFeature]
-                        }
-                      </motion.h3>
-                      <motion.div
-                        key={`bar-${activeFeature}`}
-                        className={`h-1 w-16 bg-gradient-to-r ${
-                          [
-                            "from-green-500 to-emerald-600",
-                            "from-blue-500 to-cyan-600",
-                            "from-purple-500 to-violet-600",
-                            "from-orange-500 to-red-600",
-                            "from-pink-500 to-rose-600",
-                            "from-indigo-500 to-purple-600",
-                            "from-teal-500 to-cyan-600",
-                          ][activeFeature]
-                        } rounded-full`}
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                      />
-                    </div>
-
-                    {/* Floating ring animation */}
-                    <motion.div
-                      className="absolute -inset-4 border-2 border-purple-500/30 rounded-xl"
-                      animate={{
-                        rotate: 360,
-                        scale: [1, 1.05, 1],
-                      }}
-                      transition={{
-                        rotate: {
-                          duration: 20,
-                          repeat: Infinity,
-                          ease: "linear",
-                        },
-                        scale: {
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        },
-                      }}
-                    />
-                  </div>
-                </Card>
-
-                {/* Features arranged in circular/oval pattern */}
-                {[
+              {(() => {
+                const features = [
                   {
                     title: "SEVIS Fee Payments",
                     description:
@@ -1297,8 +1193,6 @@ export default function CleanHomePage() {
                     accent: "border-green-500",
                     bgAccent: "bg-green-50 dark:bg-green-900/20",
                     icon: DollarSign,
-                    position:
-                      "top-6 left-1/2 -translate-x-1/2 -translate-y-full", // Top - closer
                   },
                   {
                     title: "Build Credit Score",
@@ -1308,8 +1202,7 @@ export default function CleanHomePage() {
                     accent: "border-blue-500",
                     bgAccent: "bg-blue-50 dark:bg-blue-900/20",
                     icon: CreditCard,
-                    position:
-                      "top-1/4 -left-14 lg:right-6  translate-x-full -translate-y-1/2", // Top Right - closer
+                    comingSoon: true,
                   },
                   {
                     title: "Student Loans",
@@ -1320,8 +1213,6 @@ export default function CleanHomePage() {
                     bgAccent: "bg-purple-50 dark:bg-purple-900/20",
                     icon: GraduationCap,
                     comingSoon: true,
-                    position:
-                      "bottom-1/4 -left-24 2xl:-right-16 translate-x-full translate-y-1/2", // Bottom Right - closer
                   },
                   {
                     title: "Bank-Level Security",
@@ -1331,20 +1222,16 @@ export default function CleanHomePage() {
                     accent: "border-orange-500",
                     bgAccent: "bg-orange-50 dark:bg-orange-900/20",
                     icon: Shield,
-                    position:
-                      "-bottom-6 left-1/2 -translate-x-1/2 translate-y-full", // Bottom - closer
                   },
-                  {
-                    title: "Global Transfers",
-                    description:
-                      "Send money worldwide with the best exchange rates and lowest fees.",
-                    color: "from-pink-500 to-rose-600",
-                    accent: "border-pink-500",
-                    bgAccent: "bg-pink-50 dark:bg-pink-900/20",
-                    icon: Globe,
-                    position:
-                      "bottom-1/4 -right-14 -translate-x-full translate-y-1/2", // Bottom Left - closer
-                  },
+                  // {
+                  //   title: "Global Transfers",
+                  //   description:
+                  //     "Send money worldwide with the best exchange rates and lowest fees.",
+                  //   color: "from-pink-500 to-rose-600",
+                  //   accent: "border-pink-500",
+                  //   bgAccent: "bg-pink-50 dark:bg-pink-900/20",
+                  //   icon: Globe,
+                  // },
                   {
                     title: "Instant Processing",
                     description:
@@ -1353,8 +1240,6 @@ export default function CleanHomePage() {
                     accent: "border-indigo-500",
                     bgAccent: "bg-indigo-50 dark:bg-indigo-900/20",
                     icon: Zap,
-                    position:
-                      "top-1/6 -right-0 -translate-x-full -translate-y-1/2", // Top Left - closer
                   },
                   {
                     title: "Appointment Booking",
@@ -1365,148 +1250,298 @@ export default function CleanHomePage() {
                     bgAccent: "bg-teal-50 dark:bg-teal-900/20",
                     icon: Users,
                     comingSoon: true,
-                    position:
-                      "bottom-0 hidden -left-20 translate-x-full -translate-y-1/2", // Mid Right - closer
                   },
-                ].map((feature, index) => (
-                  <motion.button
-                    key={index}
-                    onMouseEnter={() => setActiveFeature(index)}
-                    onClick={() => setActiveFeature(index)}
-                    className={`absolute w-64 p-4 rounded-2xl transition-all duration-500 ${
-                      feature.position
-                    } ${
-                      activeFeature === index
-                        ? `${feature.bgAccent} border-2 ${feature.accent} shadow-2xl scale-110 z-20`
-                        : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-200/50 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg z-10"
-                    }`}
-                    whileHover={{
-                      scale: activeFeature === index ? 1.1 : 1.05,
-                      y: -5,
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{
-                      opacity: 0,
-                      scale: 0.8,
-                      rotate: index * (360 / 7),
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      scale: 1,
-                      rotate: 0,
-                    }}
-                    transition={{
-                      duration: 0.6,
-                      delay: index * 0.1,
-                      type: "spring",
-                      stiffness: 100,
-                    }}
-                    viewport={{ once: true, amount: 0.1 }}
-                  >
-                    {/* Active pulse effect */}
-                    {activeFeature === index && (
-                      <motion.div
-                        className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-20 rounded-2xl`}
-                        animate={{
-                          scale: [1, 1.1, 1],
-                          opacity: [0.2, 0.4, 0.2],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
+                ];
+                const leftFeatures = features.slice(0, 3);
+                const rightFeatures = features.slice(3);
 
-                    {/* Content */}
-                    <div className="relative z-10">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div
-                          className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                            activeFeature === index
-                              ? `bg-gradient-to-r ${feature.color} shadow-lg`
-                              : "bg-gray-100 dark:bg-gray-700"
-                          } transition-all duration-300`}
-                        >
-                          <feature.icon
-                            className={`w-5 h-5 ${
-                              activeFeature === index
-                                ? "text-white"
-                                : "text-gray-600 dark:text-gray-300"
+                return (
+                  <>
+                    {/* Desktop view */}
+                    <div className="hidden lg:grid grid-cols-3 items-center place-items-center gap-x-10">
+                      {/* Left Column */}
+                      <div className="space-y-6">
+                        {leftFeatures.map((feature) => (
+                          <motion.button
+                            key={feature.title}
+                            onMouseEnter={() =>
+                              setActiveFeature(features.indexOf(feature))
+                            }
+                            onClick={() =>
+                              setActiveFeature(features.indexOf(feature))
+                            }
+                            className={`w-full p-4 rounded-2xl text-left transition-all duration-300 ${
+                              activeFeature === features.indexOf(feature)
+                                ? `${feature.bgAccent} border-2 ${feature.accent} shadow-lg scale-105`
+                                : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600"
                             }`}
-                          />
-                        </div>
-
-                        <div className="flex-1 text-left">
-                          <div className="flex items-center gap-2 mb-1">
-                            <h3
-                              className={`font-bold text-sm leading-tight ${
-                                activeFeature === index
-                                  ? "text-gray-900 dark:text-white"
-                                  : "text-gray-700 dark:text-gray-200"
-                              }`}
-                            >
-                              {feature.title}
-                            </h3>
-                            {feature.comingSoon && (
-                              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1">
-                                Soon
-                              </Badge>
-                            )}
-                          </div>
-                          <p
-                            className={`text-xs leading-relaxed ${
-                              activeFeature === index
-                                ? "text-gray-600 dark:text-gray-300"
-                                : "text-gray-500 dark:text-gray-400"
-                            }`}
+                            whileHover={{ y: -5 }}
                           >
-                            {feature.description}
-                          </p>
-                        </div>
+                            <div className="flex items-center gap-4">
+                              <div
+                                className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                  activeFeature === features.indexOf(feature)
+                                    ? `bg-gradient-to-r ${feature.color} shadow-md`
+                                    : "bg-gray-100 dark:bg-gray-700"
+                                }`}
+                              >
+                                <feature.icon
+                                  className={`w-6 h-6 ${
+                                    activeFeature === features.indexOf(feature)
+                                      ? "text-white"
+                                      : "text-gray-600 dark:text-gray-300"
+                                  }`}
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <h3
+                                    className={`font-semibold text-md ${
+                                      activeFeature ===
+                                      features.indexOf(feature)
+                                        ? "text-gray-900 dark:text-white"
+                                        : "text-gray-700 dark:text-gray-200"
+                                    }`}
+                                  >
+                                    {feature.title}
+                                  </h3>
+                                  {feature.comingSoon && (
+                                    <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1">
+                                      Soon
+                                    </Badge>
+                                  )}
+                                </div>
+                                <p
+                                  className={`text-sm leading-snug ${
+                                    activeFeature === features.indexOf(feature)
+                                      ? "text-gray-600 dark:text-gray-300"
+                                      : "text-gray-500 dark:text-gray-400"
+                                  }`}
+                                >
+                                  {feature.description}
+                                </p>
+                              </div>
+                            </div>
+                          </motion.button>
+                        ))}
+                      </div>
+
+                      {/* Center Column (Image) */}
+                      <div className="relative">
+                        <Card className="overflow-hidden shadow-2xl border-0 bg-white dark:bg-gray-800 w-80 h-80 lg:w-96 lg:h-96 relative z-10 mx-auto">
+                          <div className="relative w-full h-full">
+                            <motion.div
+                              key={activeFeature}
+                              className="absolute inset-0"
+                              initial={{
+                                opacity: 0,
+                                scale: 1.1,
+                                rotate: 5,
+                              }}
+                              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                              transition={{
+                                duration: 0.6,
+                                ease: "easeOut",
+                              }}
+                            >
+                              <Image
+                                src={
+                                  [
+                                    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
+                                    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&crop=center",
+                                    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center",
+                                    "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
+                                    "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center",
+                                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+                                    "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&crop=center",
+                                  ][activeFeature]
+                                }
+                                alt={features[activeFeature].title}
+                                fill
+                                className="object-cover rounded-xl"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl"></div>
+                            </motion.div>
+                            <div className="absolute bottom-0 left-0 right-0 p-6">
+                              <motion.h3
+                                key={`title-${activeFeature}`}
+                                className="text-xl lg:text-2xl font-bold text-white mb-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                  duration: 0.5,
+                                  delay: 0.2,
+                                }}
+                              >
+                                {features[activeFeature].title}
+                              </motion.h3>
+                              <motion.div
+                                key={`bar-${activeFeature}`}
+                                className={`h-1 w-16 bg-gradient-to-r ${features[activeFeature].color} rounded-full`}
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                transition={{
+                                  duration: 0.5,
+                                  delay: 0.3,
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </Card>
+                      </div>
+
+                      {/* Right Column */}
+                      <div className="space-y-6">
+                        {rightFeatures.map((feature) => (
+                          <motion.button
+                            key={feature.title}
+                            onMouseEnter={() =>
+                              setActiveFeature(features.indexOf(feature))
+                            }
+                            onClick={() =>
+                              setActiveFeature(features.indexOf(feature))
+                            }
+                            className={`w-full p-4 rounded-2xl text-left transition-all duration-300 ${
+                              activeFeature === features.indexOf(feature)
+                                ? `${feature.bgAccent} border-2 ${feature.accent} shadow-lg scale-105`
+                                : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                            }`}
+                            whileHover={{ y: -5 }}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div
+                                className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                  activeFeature === features.indexOf(feature)
+                                    ? `bg-gradient-to-r ${feature.color} shadow-md`
+                                    : "bg-gray-100 dark:bg-gray-700"
+                                }`}
+                              >
+                                <feature.icon
+                                  className={`w-6 h-6 ${
+                                    activeFeature === features.indexOf(feature)
+                                      ? "text-white"
+                                      : "text-gray-600 dark:text-gray-300"
+                                  }`}
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <h3
+                                    className={`font-semibold text-md ${
+                                      activeFeature ===
+                                      features.indexOf(feature)
+                                        ? "text-gray-900 dark:text-white"
+                                        : "text-gray-700 dark:text-gray-200"
+                                    }`}
+                                  >
+                                    {feature.title}
+                                  </h3>
+                                  {feature.comingSoon && (
+                                    <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1">
+                                      Soon
+                                    </Badge>
+                                  )}
+                                </div>
+                                <p
+                                  className={`text-sm leading-snug ${
+                                    activeFeature === features.indexOf(feature)
+                                      ? "text-gray-600 dark:text-gray-300"
+                                      : "text-gray-500 dark:text-gray-400"
+                                  }`}
+                                >
+                                  {feature.description}
+                                </p>
+                              </div>
+                            </div>
+                          </motion.button>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Connecting line to center */}
-                    <motion.div
-                      className={`absolute w-0.5 h-8 bg-gradient-to-b ${
-                        feature.color
-                      } ${
-                        activeFeature === index ? "opacity-60" : "opacity-20"
-                      }`}
-                      style={{
-                        top: "50%",
-                        left: "50%",
-                        transformOrigin: "center top",
-                        transform: `translateX(-50%) rotate(${
-                          index * (360 / 7) - 90
-                        }deg)`,
-                      }}
-                      animate={{
-                        scaleY: activeFeature === index ? 1 : 0.5,
-                        opacity: activeFeature === index ? 0.6 : 0.2,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.button>
-                ))}
+                    {/* Mobile view */}
+                    <div className="lg:hidden grid sm:grid-cols-2 h-full gap-6 space-y-4">
+                      {features.map((feature, index) => (
+                        <motion.div
+                          key={index}
+                          onClick={() => setActiveFeature(index)}
+                          className={`w-full p-4 h-full rounded-2xl transition-all duration-300 ${
+                            activeFeature === index
+                              ? `${feature.bgAccent} border-2 ${feature.accent} shadow-lg`
+                              : "bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-2 border-gray-200/50 dark:border-gray-700/50"
+                          }`}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{
+                            duration: 0.5,
+                            delay: index * 0.1,
+                          }}
+                          viewport={{ once: true, amount: 0.2 }}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div
+                              className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                activeFeature === index
+                                  ? `bg-gradient-to-r ${feature.color} shadow-md`
+                                  : "bg-gray-100 dark:bg-gray-700"
+                              }`}
+                            >
+                              <feature.icon
+                                className={`w-6 h-6 ${
+                                  activeFeature === index
+                                    ? "text-white"
+                                    : "text-gray-600 dark:text-gray-300"
+                                }`}
+                              />
+                            </div>
+                            <div className="flex-1 text-left">
+                              <div className="flex items-center gap-2 mb-1">
+                                <h3
+                                  className={`font-semibold text-md ${
+                                    activeFeature === index
+                                      ? "text-gray-900 dark:text-white"
+                                      : "text-gray-700 dark:text-gray-200"
+                                  }`}
+                                >
+                                  {feature.title}
+                                </h3>
+                                {feature.comingSoon && (
+                                  <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs px-2 py-1">
+                                    Soon
+                                  </Badge>
+                                )}
+                              </div>
+                              <p
+                                className={`text-sm leading-snug ${
+                                  activeFeature === index
+                                    ? "text-gray-600 dark:text-gray-300"
+                                    : "text-gray-500 dark:text-gray-400"
+                                }`}
+                              >
+                                {feature.description}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
 
-                {/* Feature indicators */}
-                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-2">
-                  {Array.from({ length: 7 }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveFeature(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        activeFeature === index
-                          ? "bg-purple-500 w-8"
-                          : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
+                    {/* Feature indicators */}
+                    <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-2">
+                      {Array.from({ length: 7 }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setActiveFeature(index)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            activeFeature === index
+                              ? "bg-purple-500 w-8"
+                              : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
             </motion.div>
           </div>
         </section>
