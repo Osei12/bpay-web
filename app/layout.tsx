@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/theme-context";
+import InstallPWABanner from "@/components/install-pwa-banner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -125,7 +126,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} antialiased font-sans min-h-screen`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+
+          <InstallPWABanner />
+        </ThemeProvider>
       </body>
     </html>
   );
