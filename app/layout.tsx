@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "secure student payments",
     "student financial aid",
   ],
-  authors: [{ name: "BPay Team", url: "https://bpay.com" }],
+  authors: [{ name: "BPay Team", url: "https://bpay-eight.vercel.app" }],
   creator: "BPay Inc.",
   publisher: "BPay Inc.",
   formatDetection: {
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://bpay.com"),
+  metadataBase: new URL("https://bpay-eight.vercel.app"),
   alternates: {
     canonical: "/",
   },
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "BPay - #1 Financial App for International Students",
     description:
       "Join 50,000+ international students who trust BPay for SEVIS payments, credit building, and financial management. Download now!",
-    url: "https://bpay.com",
+    url: "https://bpay-eight.vercel.app",
     siteName: "BPay",
     type: "website",
     locale: "en_US",
