@@ -25,11 +25,13 @@ import {
   Menu,
   X,
   ChevronDown,
+  Facebook,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Icons } from "@/components/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
+import SocialLinks from "@/components/sections/SocialMedia";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -801,6 +803,7 @@ export default function CleanHomePage() {
                               objectFit="cover"
                               alt=""
                               className="w-64 sm:w-72 md:w-80 lg:w-96  drop-shadow-2xl"
+                              priority
                             />
                           </motion.div>
                         </div>
@@ -1663,8 +1666,13 @@ export default function CleanHomePage() {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <div className="flex items-center space-x-3 mb-6 relative">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center relative shadow-lg">
-                    <Smartphone className="w-5 h-5 text-white" />
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center relative shadow-lg">
+                    <Image
+                      src={"/assets/logo/adaptive-icon.png"}
+                      alt=""
+                      width={80}
+                      height={100}
+                    />
                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400/60 rounded-full transform rotate-45"></div>
                   </div>
                   <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -1678,25 +1686,7 @@ export default function CleanHomePage() {
                 </p>
 
                 {/* Social Media */}
-                <div className="flex space-x-4">
-                  {[
-                    { name: "Twitter", icon: "🐦" },
-                    { name: "LinkedIn", icon: "💼" },
-                    { name: "Instagram", icon: "📷" },
-                    { name: "Facebook", icon: "📘" },
-                  ].map((social, index) => (
-                    <motion.a
-                      key={social.name}
-                      href="#"
-                      className="w-10 h-10 glass-card hover:glass-card-hover rounded-xl flex items-center justify-center text-lg transition-all duration-300 group"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {social.icon}
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </motion.a>
-                  ))}
-                </div>
+                <SocialLinks />
               </motion.div>
 
               {/* Services */}
@@ -1750,7 +1740,7 @@ export default function CleanHomePage() {
                     { name: "About Us", link: "/mission" },
                     { name: "Our Mission", link: "/mission" },
                     { name: "Security", link: "/security" },
-                    { name: "Careers", link: "/careers" },
+                    // { name: "Careers", link: "/careers" },
                     { name: "Blog", link: "/blog" },
                     { name: "Press Kit", link: "/blog" },
                   ].map((item, index) => (

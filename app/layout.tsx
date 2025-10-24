@@ -129,7 +129,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
 
-          <InstallPWABanner />
+          {/* <InstallPWABanner /> */}
         </ThemeProvider>
       </body>
     </html>

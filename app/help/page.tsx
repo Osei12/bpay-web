@@ -32,56 +32,96 @@ const helpCategories = [
   {
     icon: CreditCard,
     title: "Payments & Transactions",
-    description: "Get help with SEVIS payments, transfers, and transaction issues",
+    description:
+      "Get help with SEVIS payments, transfers, and transaction issues",
     articleCount: 24,
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=center",
     color: "from-blue-500 to-cyan-500",
-    topics: ["SEVIS Payment Process", "Transaction History", "Payment Methods", "Refunds & Cancellations"],
+    topics: [
+      "SEVIS Payment Process",
+      "Transaction History",
+      "Payment Methods",
+      "Refunds & Cancellations",
+    ],
   },
   {
     icon: Shield,
     title: "Account & Security",
     description: "Account management, security settings, and verification help",
     articleCount: 18,
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop&crop=center",
     color: "from-green-500 to-emerald-500",
-    topics: ["Account Verification", "Two-Factor Authentication", "Password Reset", "Security Settings"],
+    topics: [
+      "Account Verification",
+      "Two-Factor Authentication",
+      "Password Reset",
+      "Security Settings",
+    ],
   },
   {
     icon: DollarSign,
     title: "Credit Building",
-    description: "Learn about building your US credit score as an international student",
+    description:
+      "Learn about building your US credit score as an international student",
     articleCount: 15,
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center",
     color: "from-purple-500 to-violet-500",
-    topics: ["Credit Score Basics", "Building Credit History", "Credit Monitoring", "Credit Cards"],
+    topics: [
+      "Credit Score Basics",
+      "Building Credit History",
+      "Credit Monitoring",
+      "Credit Cards",
+    ],
   },
   {
     icon: FileText,
     title: "Documentation",
     description: "Document upload, verification, and management assistance",
     articleCount: 12,
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop&crop=center",
     color: "from-orange-500 to-red-500",
-    topics: ["Document Requirements", "Upload Process", "Verification Status", "Document Security"],
+    topics: [
+      "Document Requirements",
+      "Upload Process",
+      "Verification Status",
+      "Document Security",
+    ],
   },
   {
     icon: Globe,
     title: "International Students",
-    description: "Specific guidance for international students and visa requirements",
+    description:
+      "Specific guidance for international students and visa requirements",
     articleCount: 21,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center",
     color: "from-teal-500 to-cyan-500",
-    topics: ["Visa Requirements", "Student Status", "Country-Specific Info", "Study Abroad Tips"],
+    topics: [
+      "Visa Requirements",
+      "Student Status",
+      "Country-Specific Info",
+      "Study Abroad Tips",
+    ],
   },
   {
     icon: Users,
     title: "General Support",
-    description: "General questions, app navigation, and getting started guides",
+    description:
+      "General questions, app navigation, and getting started guides",
     articleCount: 30,
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop&crop=center",
+    image:
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop&crop=center",
     color: "from-pink-500 to-rose-500",
-    topics: ["Getting Started", "App Navigation", "Feature Overview", "Troubleshooting"],
+    topics: [
+      "Getting Started",
+      "App Navigation",
+      "Feature Overview",
+      "Troubleshooting",
+    ],
   },
 ];
 
@@ -188,12 +228,14 @@ export default function HelpCenterPage() {
               </Badge>
 
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                How can we <span className="text-gradient-neon">help you</span> today?
+                How can we <span className="text-gradient-neon">help you</span>{" "}
+                today?
               </h1>
 
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Find answers to your questions, get step-by-step guides, or connect with our support team.
-                We're here to make your BPay experience smooth and successful.
+                Find answers to your questions, get step-by-step guides, or
+                connect with our support team. We're here to make your BPay
+                experience smooth and successful.
               </p>
 
               {/* Search Bar */}
@@ -212,8 +254,17 @@ export default function HelpCenterPage() {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                {["SEVIS Payments", "Credit Building", "Account Setup", "Security"].map((tag) => (
-                  <Badge key={tag} variant="outline" className="cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                {[
+                  "SEVIS Payments",
+                  "Credit Building",
+                  "Account Setup",
+                  "Security",
+                ].map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="outline"
+                    className="cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                  >
                     {tag}
                   </Badge>
                 ))}
@@ -240,9 +291,13 @@ export default function HelpCenterPage() {
                 <motion.div
                   className="absolute top-6 right-6 glass-card p-3 rounded-xl"
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
-                  <div className="flex items-center gap-2 text-white">
+                  <div className="flex items-center gap-2 text-muted-foreground dark:text-foreground">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     <span className="text-sm font-medium">24/7 Support</span>
                   </div>
@@ -251,9 +306,14 @@ export default function HelpCenterPage() {
                 <motion.div
                   className="absolute bottom-6 left-6 glass-card p-4 rounded-xl"
                   animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
                 >
-                  <div className="text-white">
+                  <div className="text-foreground">
                     <div className="text-2xl font-bold">98%</div>
                     <div className="text-sm opacity-90">Satisfaction Rate</div>
                   </div>
@@ -303,7 +363,9 @@ export default function HelpCenterPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-3 left-3">
-                      <div className={`w-10 h-10 bg-gradient-to-r ${category.color} rounded-lg flex items-center justify-center`}>
+                      <div
+                        className={`w-10 h-10 bg-gradient-to-r ${category.color} rounded-lg flex items-center justify-center`}
+                      >
                         <category.icon className="w-5 h-5 text-white" />
                       </div>
                     </div>
@@ -324,9 +386,14 @@ export default function HelpCenterPage() {
 
                     {/* Popular Topics */}
                     <div className="space-y-2">
-                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Popular topics:</p>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        Popular topics:
+                      </p>
                       {category.topics.slice(0, 3).map((topic, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300"
+                        >
                           <ChevronRight className="w-3 h-3 text-gray-400" />
                           {topic}
                         </div>
@@ -370,12 +437,17 @@ export default function HelpCenterPage() {
               >
                 <Card className="p-6 glass-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <div className="flex items-start justify-between mb-3">
-                    <Badge variant="outline" className="text-blue-600 border-blue-200">
+                    <Badge
+                      variant="outline"
+                      className="text-blue-600 border-blue-200"
+                    >
                       {article.category}
                     </Badge>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm text-gray-600 dark:text-gray-400">{article.rating}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        {article.rating}
+                      </span>
                     </div>
                   </div>
 
@@ -445,14 +517,20 @@ export default function HelpCenterPage() {
                 className="group cursor-pointer"
               >
                 <Card className="text-center p-6 glass-card hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${option.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-r ${option.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
+                  >
                     <option.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-lg font-bold mb-3">{option.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">{option.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
+                    {option.description}
+                  </p>
                   <div className="space-y-2 text-xs text-gray-500 dark:text-gray-400">
                     <div>{option.availability}</div>
-                    <div className="font-medium">Response: {option.responseTime}</div>
+                    <div className="font-medium">
+                      Response: {option.responseTime}
+                    </div>
                   </div>
                 </Card>
               </motion.div>
@@ -474,14 +552,18 @@ export default function HelpCenterPage() {
               Didn't Find What You're Looking For?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Our support team is available 24/7 to help with any questions or issues you might have.
+              Our support team is available 24/7 to help with any questions or
+              issues you might have.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3">
                 Contact Support
                 <MessageCircle className="w-4 h-4 ml-2" />
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
+              >
                 Browse All Articles
                 <BookOpen className="w-4 h-4 ml-2" />
               </Button>
