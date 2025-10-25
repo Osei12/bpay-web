@@ -235,17 +235,17 @@ export default function CleanHomePage() {
         <motion.nav
           role="navigation"
           aria-label="Main navigation"
-          className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
+          className={`fixed top-4 w-full md:left-1/2 transform md:-translate-x-1/2 mx-auto z-50 transition-all duration-500 ease-out ${
             isScrolled
-              ? "glass-nav rounded-full px-6 py-3 mx-4  shadow-2xl"
-              : "bg-transparent rounded-2xl px-6 py-4 max-w-7xl w-full"
-          }`}
-          initial={{ opacity: 0, y: -20, x: 0, scale: 0.9 }}
+              ? "glass-nav rounded-full px-6 py-3 md:max-w-7xl  shadow-2xl"
+              : "bg-transparent  px-6 py-4 max-w-7xl w-full"
+          } ${isMobileMenuOpen ? "w-full glass-nav mx-0 !top-0" : ""}`}
+          initial={{ opacity: 0, y: -20, x: 0, scale: 0.6 }}
           animate={{
             opacity: 1,
             y: 0,
             scale: 1,
-            borderRadius: isScrolled ? "9999px" : "16px",
+            borderRadius: isScrolled && !isMobileMenuOpen ? "9999px" : "16px",
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
@@ -269,7 +269,7 @@ export default function CleanHomePage() {
                   isScrolled ? "text-lg" : "text-xl"
                 }`}
               >
-                BPay
+                Bpay
               </span>
             </motion.div>
 
@@ -525,7 +525,7 @@ export default function CleanHomePage() {
               transition={{ duration: 0.3 }}
               className="md:hidden mt-4 pt-4 border-t border-gray-200 dark:border-gray-700"
             >
-              <div className="space-y-1">
+              <div className="space-y-1 ">
                 {/* Mobile Services */}
                 <div className="py-2">
                   <div className="font-medium text-gray-900 dark:text-white mb-2">
@@ -620,12 +620,12 @@ export default function CleanHomePage() {
                     >
                       Security
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/careers"
                       className="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-1"
                     >
                       Careers
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
 
